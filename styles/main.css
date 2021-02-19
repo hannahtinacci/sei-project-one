@@ -17,7 +17,7 @@ header {
 .time-screen {
   width: 150px;
   height: 50px;
-  border: 2px solid black;
+  border: 1px solid black;
 }
 
 .play-area-wrapper {
@@ -37,12 +37,17 @@ aside {
 
 button {
   margin-bottom: 50px;
+  padding: 20px;
+}
+
+.score {
+  justify-content: center;
 }
 
 .score p {
   width: 150px;
   height: 50px;
-  border: 2px solid black;
+  border: 1px solid black;
 }
 
 .grid-wrapper {
@@ -53,7 +58,7 @@ button {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  border: 2px solid black;
+  border: 1px solid black;
   height: 700px;
   width: 700px;
 }
@@ -62,6 +67,17 @@ button {
   height: 10%;
   width: 10%;
   
+}
+
+.grid div.bear {
+  background-image: url('../images/bear.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.grid div.cave {
+  background-image: url('../images/cave.png');
+  background-size: cover;
 }
 
 footer {
