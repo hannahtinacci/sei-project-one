@@ -1,0 +1,75 @@
+.page-wrapper {
+  position: relative;
+  height: 100vh;
+}
+
+header {
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.to-play {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.time-screen {
+  width: 150px;
+  height: 50px;
+  border: 2px solid black;
+}
+
+.play-area-wrapper {
+  display: flex;
+  justify-content: space-around;
+  /* padding-left: 30px;
+  padding-right: 30px; */
+
+}
+aside {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-self: center;
+  /* width: 33.3% */
+}
+
+button {
+  margin-bottom: 50px;
+}
+
+.score p {
+  width: 150px;
+  height: 50px;
+  border: 2px solid black;
+}
+
+.grid-wrapper {
+  display: flex;
+  /* width: 66.6%; */
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid black;
+  height: 700px;
+  width: 700px;
+}
+
+.grid div {
+  height: 10%;
+  width: 10%;
+  
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p{
+  text-align: center;
+}
