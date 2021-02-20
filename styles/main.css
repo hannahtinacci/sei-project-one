@@ -88,6 +88,7 @@ button {
 .grid div.car {
   background-image: url('../assets/car.png');
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 footer {

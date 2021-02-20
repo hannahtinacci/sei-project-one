@@ -14,7 +14,7 @@ function init() {
   const grassCells = [36, 37, 38, 39, 40, 41, 42, 43, 44]
   
   const carClass = 'car'
-  let carStartPosition = 63
+  const carStartPosition = 63
   let carCurrentPosition = 63
 
   const timerScreen = document.querySelector('.time-screen p')
@@ -23,7 +23,6 @@ function init() {
   let timerID = null
 
 // * GRID
-
   function createGrid(bearStartPosition) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
@@ -35,12 +34,7 @@ function init() {
   }
 
 // * Add grass for safe areas
-//   function addGrass() {
-//     for (let i = 0; i < grassCells.length; i++) {
-      
-//     }
-    
-//   }
+
 
 // * Add bear (aka Frogger) to cell
   function addBear(position) {
@@ -74,7 +68,8 @@ function init() {
   }
 
 
-// * Main game timer
+// * Main game timer and start obstacles
+
   function startTimer(event) {
     timerID = setInterval(() => {
       timeRemaining--
@@ -87,11 +82,13 @@ function init() {
     }, 1000)
   }
 
-// * Add car obstacle
-  function addCar() {
-    carStartPosition.classList.add(carClass)
+// * 
+
+// * Add car to start cell
+  function addCar(position) {
+    cells[position].classList.add(carClass)
   }
-  console.log('CAR', carStartPosition)
+ 
 
 // * EVENT LISTENERS
 
@@ -99,11 +96,11 @@ function init() {
   
   createGrid(bearStartPosition)
 
-  // addGrass()
-
   button.addEventListener('click', startTimer)
+  // button.addEventListener('click', startRoadObstacles)
 
-  addCar()
+  addCar(carStartPosition)
+
   
 }
 
