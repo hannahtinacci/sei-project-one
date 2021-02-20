@@ -3,22 +3,28 @@ function init() {
 // * VARIABLES
   const grid = document.querySelector('.grid')
 
-  const width = 10
+  const width = 9
   const cellCount = width * width
   const cells = []
 
   const bearClass = 'bear'
-  const bearStartPosition = 94
-  let bearCurrentPosition = 94
+  const bearStartPosition = 76
+  let bearCurrentPosition = 76
 
-  const timerScreen = document.querySelector('.time-screen')
+  const grassCells = [36, 37, 38, 39, 40, 41, 42, 43, 44]
+  
+  const carClass = 'car'
+  let carStartPosition = 63
+  let carCurrentPosition = 63
+
+  const timerScreen = document.querySelector('.time-screen p')
   const button = document.querySelector('button')
   let timeRemaining = 30
   let timerID = null
 
 // * GRID
 
-  function createGrid() {
+  function createGrid(bearStartPosition) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
       cell.textContent = i
@@ -27,6 +33,14 @@ function init() {
     }
     addBear(bearStartPosition)
   }
+
+// * Add grass for safe areas
+//   function addGrass() {
+//     for (let i = 0; i < grassCells.length; i++) {
+      
+//     }
+    
+//   }
 
 // * Add bear (aka Frogger) to cell
   function addBear(position) {
@@ -44,7 +58,7 @@ function init() {
     
     removeBear(bearCurrentPosition)
 
-    if (key === 39 && bearCurrentPosition % width -1) {
+    if (key === 39 && bearCurrentPosition % width - 1) {
       bearCurrentPosition++
     } else if (key === 37 && bearCurrentPosition % width !== 0) {
       bearCurrentPosition--
@@ -60,28 +74,36 @@ function init() {
   }
 
 
-// * Timer
+// * Main game timer
   function startTimer(event) {
     timerID = setInterval(() => {
       timeRemaining--
       if (timeRemaining < 0) {
         clearInterval(timerID)
+        timerScreen.classList.add('animate_flash')
       } else {
         timerScreen.innerHTML = timeRemaining
       }
     }, 1000)
   }
 
+// * Add car obstacle
+  function addCar() {
+    carStartPosition.classList.add(carClass)
+  }
+  console.log('CAR', carStartPosition)
 
 // * EVENT LISTENERS
 
   document.addEventListener('keyup', handleKeyUp)
   
-  createGrid()
+  createGrid(bearStartPosition)
+
+  // addGrass()
 
   button.addEventListener('click', startTimer)
 
-
+  addCar()
   
 }
 

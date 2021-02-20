@@ -22,7 +22,7 @@ header {
 
 .play-area-wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   /* padding-left: 30px;
   padding-right: 30px; */
 
@@ -32,6 +32,7 @@ aside {
   flex-direction: column;
   height: 100%;
   align-self: center;
+  padding-right: 50px;
   /* width: 33.3% */
 }
 
@@ -52,7 +53,6 @@ button {
 
 .grid-wrapper {
   display: flex;
-  /* width: 66.6%; */
 }
 
 .grid {
@@ -64,20 +64,30 @@ button {
 }
 
 .grid div {
-  height: 10%;
-  width: 10%;
+  height: 11%;
+  width: 11%;
   
 }
 
 .grid div.bear {
-  background-image: url('../images/bear.png');
+  background-image: url('../assets/bear.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .grid div.cave {
-  background-image: url('../images/cave.png');
+  background-image: url('../assets/cave.png');
   background-size: cover;
+}
+
+.grass {
+  background-image: url('../assets/grass.png');
+  background-size: contain;
+}
+
+.grid div.car {
+  background-image: url('../assets/car.png');
+  background-size: contain;
 }
 
 footer {
@@ -88,4 +98,5 @@ footer {
 
 footer p{
   text-align: center;
+  padding-bottom: 20px;
 }
