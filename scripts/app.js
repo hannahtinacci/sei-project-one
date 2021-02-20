@@ -11,6 +11,11 @@ function init() {
   const bearStartPosition = 94
   let bearCurrentPosition = 94
 
+  const timerScreen = document.querySelector('.time-screen')
+  const button = document.querySelector('button')
+  let timeRemaining = 30
+  let timerID = null
+
 // * GRID
 
   function createGrid() {
@@ -54,12 +59,27 @@ function init() {
     addBear(bearCurrentPosition)
   }
 
+
+// * Timer
+  function startTimer(event) {
+    timerID = setInterval(() => {
+      timeRemaining--
+      if (timeRemaining < 0) {
+        clearInterval(timerID)
+      } else {
+        timerScreen.innerHTML = timeRemaining
+      }
+    }, 1000)
+  }
+
+
 // * EVENT LISTENERS
 
   document.addEventListener('keyup', handleKeyUp)
   
   createGrid()
 
+  button.addEventListener('click', startTimer)
 
 
   
