@@ -17,6 +17,10 @@ function init() {
   const carStartPosition = 63
   let carCurrentPosition = 63
 
+  const logClass = 'log'
+  const logStartPosition = 35
+  let logCurrentPosition = 35
+
   const timerScreen = document.querySelector('.time-screen p')
   const button = document.querySelector('button')
   let timeRemaining = 30
@@ -68,7 +72,7 @@ function init() {
   }
 
 
-// * Main game timer and start obstacles
+// * Main game timer
 
   function startTimer(event) {
     timerID = setInterval(() => {
@@ -88,7 +92,11 @@ function init() {
   function addCar(position) {
     cells[position].classList.add(carClass)
   }
- 
+
+// * Add log to start cell
+  function addLog(position) {
+    cells[position].classList.add(logClass)
+  }
 
 // * EVENT LISTENERS
 
@@ -100,6 +108,7 @@ function init() {
   // button.addEventListener('click', startRoadObstacles)
 
   addCar(carStartPosition)
+  addLog(logStartPosition)
 
   
 }

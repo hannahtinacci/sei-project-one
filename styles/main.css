@@ -91,6 +91,11 @@ button {
   background-repeat: no-repeat;
 }
 
+.grid div.log {
+  background-image: url('../assets/log.png');
+  background-size: contain;
+}
+
 footer {
   position: absolute;
   bottom: 0;
