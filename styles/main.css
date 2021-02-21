@@ -69,13 +69,15 @@ button {
 
 .lives {
   text-align: center;
-  padding-right: 90px;
+  padding-right: 120px;
 }
 
 .lives div{
-  width: 250px;
+  width: 150px;
   height: 50px;
   border: 1px solid black;
+  padding-top: 7px;
+  
 }
 
 .grid div {
