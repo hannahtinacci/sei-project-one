@@ -11,7 +11,7 @@ function init() {
   const bearStartPosition = 76
   let bearCurrentPosition = 76
 
-  const grassCells = [36, 37, 38, 39, 40, 41, 42, 43, 44]
+  // const grassCells = [36, 37, 38, 39, 40, 41, 42, 43, 44]
   
   const carClass = 'car'
   const carStartPosition = 63
@@ -20,6 +20,9 @@ function init() {
   const logClass = 'log'
   const logStartPosition = 35
   let logCurrentPosition = 35
+
+  // const caveClass = 'cave'
+  // const cavePosition = [1, 3, 5, 7]
 
   const timerScreen = document.querySelector('.time-screen p')
   const button = document.querySelector('button')
@@ -71,8 +74,17 @@ function init() {
     addBear(bearCurrentPosition)
   }
 
+// * Add car to start cell
+  function addCar(position) {
+    cells[position].classList.add(carClass)
+}
 
-// * Main game timer
+// * Add log to start cell
+  function addLog(position) {
+    cells[position].classList.add(logClass)
+}
+
+// * Main game timer, linked to start button
 
   function startTimer(event) {
     timerID = setInterval(() => {
@@ -86,17 +98,21 @@ function init() {
     }, 1000)
   }
 
-// * 
+// * Timer for car animation
+  function startCarObstacles(event) {
+    timerID = setInterval(() => {
+      
 
-// * Add car to start cell
-  function addCar(position) {
-    cells[position].classList.add(carClass)
+    }, 1000)
   }
 
-// * Add log to start cell
-  function addLog(position) {
-    cells[position].classList.add(logClass)
-  }
+
+  // function addCave(position) {
+  //   for (let i = 0; i < cellCount; i++) {
+  //     cells[position].classList.add(caveClass)
+  //   }
+  // }
+  
 
 // * EVENT LISTENERS
 
@@ -105,11 +121,11 @@ function init() {
   createGrid(bearStartPosition)
 
   button.addEventListener('click', startTimer)
-  // button.addEventListener('click', startRoadObstacles)
+  button.addEventListener('click', startCarObstacles)
 
   addCar(carStartPosition)
   addLog(logStartPosition)
-
+  // addCave(cavePosition)
   
 }
 

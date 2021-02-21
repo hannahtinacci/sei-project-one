@@ -7,11 +7,21 @@ header {
   text-align: center;
   padding-bottom: 50px;
 }
-
-.to-play {
+nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+button {
+  padding: 20px;
+  width: 170px;
+  margin-top: 10px;
+}
+
+.score {
+  /* justify-content: center; */
+  margin-top: 10px;
 }
 
 .time-screen {
@@ -23,26 +33,8 @@ header {
 .play-area-wrapper {
   display: flex;
   justify-content: center;
-  /* padding-left: 30px;
-  padding-right: 30px; */
-
-}
-aside {
-  display: flex;
   flex-direction: column;
-  height: 100%;
-  align-self: center;
-  padding-right: 50px;
-  /* width: 33.3% */
-}
-
-button {
-  margin-bottom: 50px;
-  padding: 20px;
-}
-
-.score {
-  justify-content: center;
+  align-items: center;
 }
 
 .score p {
@@ -61,6 +53,13 @@ button {
   border: 1px solid black;
   height: 700px;
   width: 700px;
+}
+
+.game-info {
+  display: flex;
+  flex-direction: row;
+
+  padding-top: 20px;
 }
 
 .grid div {
