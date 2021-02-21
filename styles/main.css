@@ -113,6 +113,11 @@ button {
   background-size: contain;
 }
 
+.grid div.bus {
+  background-image: url('../assets/bus.png');
+  background-size: contain;
+}
+
 .grid div.log {
   background-image: url('../assets/log.png');
   background-size: contain;

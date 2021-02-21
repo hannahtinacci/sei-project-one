@@ -22,6 +22,9 @@ function init() {
   const truckClass = 'truck'
   let truckCurrentPosition = 54
 
+  const busClass = 'bus'
+  let busCurrentPosition = 53
+
   const timerScreen = document.querySelector('.time-screen p')
   const button = document.querySelector('button')
   let timeRemaining = 30
@@ -98,13 +101,13 @@ function init() {
 
 // * Add truck
   function addTruck(position) {
-  cells[position].classList.add(truckClass)
-}
+    cells[position].classList.add(truckClass)
+  }
 
 // * Remove truck
   function removeTruck(position) {
-  cells[position].classList.remove(truckClass)
-}
+    cells[position].classList.remove(truckClass)
+  }
 
 // * Move truck
   function moveTruck() {
@@ -119,6 +122,30 @@ function init() {
       addTruck(truckCurrentPosition)
     }, 600)
   }
+
+// * Add bus
+  function addBus(position) {
+    cells[position].classList.add(busClass)
+  }
+
+// * Remove bus
+  function removeBus(position) {
+    cells[position].classList.remove(busClass)
+  }
+
+// * Move bus
+  function moveBus() {
+    timerID = setInterval(() => {
+      removeBus(busCurrentPosition)
+
+      if (busCurrentPosition <= 45) {
+        clearInterval(timerID)
+      } else {
+        busCurrentPosition--
+      }
+      addBus(busCurrentPosition)
+    }, 600)
+}
 
 // * Add log to start cell
   function addLog(position) {
@@ -171,10 +198,12 @@ function init() {
   button.addEventListener('click', moveCar)
   button.addEventListener('click', moveLog)
   button.addEventListener('click', moveTruck)
+  button.addEventListener('click', moveBus)
 
   addCar(carStartPosition)
   addLog(logStartPosition)
   addTruck(truckCurrentPosition)
+  addBus(busCurrentPosition)
 
   // moveCar()
 
