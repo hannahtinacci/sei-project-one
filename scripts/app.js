@@ -18,6 +18,7 @@ function init() {
   const logClass = 'log'
   const logStartPosition = 35
   let logCurrentPosition = 35
+  let logCurrentPosition2 = 17
 
   const truckClass = 'truck'
   let truckCurrentPosition = 54
@@ -29,6 +30,8 @@ function init() {
   const button = document.querySelector('button')
   let timeRemaining = 30
   let timerID = null
+
+  const totalScore = document.querySelector('.score').querySelector('p')
 
 // * GRID
   function createGrid(bearStartPosition) {
@@ -120,7 +123,7 @@ function init() {
         truckCurrentPosition++
       }
       addTruck(truckCurrentPosition)
-    }, 600)
+    }, 675)
   }
 
 // * Add bus
@@ -161,13 +164,16 @@ function init() {
   function moveLog() {
     timerID = setInterval(() => {
       removeLog(logCurrentPosition)
+      removeLog(logCurrentPosition2)
 
-      if (logCurrentPosition <= 27) {
+      if (logCurrentPosition <= 27 && logCurrentPosition2 <= 9) {
         clearInterval(timerID)
       } else {
         logCurrentPosition--
+        logCurrentPosition2--
       }
       addLog(logCurrentPosition)
+      addLog(logCurrentPosition2)
     }, 600)
   }
   
