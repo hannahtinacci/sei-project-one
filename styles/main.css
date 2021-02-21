@@ -97,7 +97,7 @@ button {
   background-size: cover;
 }
 
-.grass {
+.grid div.grass {
   background-image: url('../assets/grass.png');
   background-size: contain;
 }
@@ -108,10 +108,16 @@ button {
   background-repeat: no-repeat;
 }
 
+.grid div.truck {
+  background-image: url('../assets/trucking.png');
+  background-size: contain;
+}
+
 .grid div.log {
   background-image: url('../assets/log.png');
   background-size: contain;
 }
+
 
 footer {
   position: absolute;

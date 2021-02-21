@@ -19,6 +19,9 @@ function init() {
   const logStartPosition = 35
   let logCurrentPosition = 35
 
+  const truckClass = 'truck'
+  let truckCurrentPosition = 54
+
   const timerScreen = document.querySelector('.time-screen p')
   const button = document.querySelector('button')
   let timeRemaining = 30
@@ -74,14 +77,48 @@ function init() {
     cells[position].classList.add(carClass)
   }
 
+// * Remove car
+  function removeCar(position) {
+    cells[position].classList.remove(carClass)
+  }
 // * Move car
-  // function moveCar() {
-  //   timerID = setInterval(() => {
-  //     if (carStartPosition > width) {
-  //       console.log()
-  //     }
-  //   }, 1000)
-  // }
+  function moveCar() {
+    timerID = setInterval(() => {
+      removeCar(carCurrentPosition)
+
+      if (carCurrentPosition >= 71) {
+        clearInterval(timerID)
+      } else {
+        carCurrentPosition++
+      }
+      addCar(carCurrentPosition)
+    }, 750)
+  
+}
+
+// * Add truck
+  function addTruck(position) {
+  cells[position].classList.add(truckClass)
+}
+
+// * Remove truck
+  function removeTruck(position) {
+  cells[position].classList.remove(truckClass)
+}
+
+// * Move truck
+  function moveTruck() {
+    timerID = setInterval(() => {
+      removeTruck(truckCurrentPosition)
+
+      if (truckCurrentPosition >= 62) {
+        clearInterval(timerID)
+      } else {
+        truckCurrentPosition++
+      }
+      addTruck(truckCurrentPosition)
+    }, 600)
+  }
 
 // * Add log to start cell
   function addLog(position) {
@@ -104,8 +141,7 @@ function init() {
         logCurrentPosition--
       }
       addLog(logCurrentPosition)
-    }, 700)
-    
+    }, 600)
   }
   
 
@@ -124,14 +160,6 @@ function init() {
     }, 1000)
   }
 
-// * Timer for car animation
-  function startCarObstacles(event) {
-    timerID = setInterval(() => {
-    
-
-    }, 1000)
-  }
-
 
 // * EVENT LISTENERS
 
@@ -140,10 +168,13 @@ function init() {
   createGrid(bearStartPosition)
 
   button.addEventListener('click', startTimer)
-  button.addEventListener('click', startCarObstacles)
+  button.addEventListener('click', moveCar)
   button.addEventListener('click', moveLog)
+  button.addEventListener('click', moveTruck)
+
   addCar(carStartPosition)
   addLog(logStartPosition)
+  addTruck(truckCurrentPosition)
 
   // moveCar()
 
