@@ -5,6 +5,7 @@
 
 header {
   text-align: center;
+  padding-top: 20px;
   padding-bottom: 50px;
 }
 nav {
@@ -22,6 +23,10 @@ button {
 .score {
   /* justify-content: center; */
   margin-top: 10px;
+}
+
+.timer {
+  text-align: center;
 }
 
 .time-screen {
@@ -60,6 +65,17 @@ button {
   flex-direction: row;
 
   padding-top: 20px;
+}
+
+.lives {
+  text-align: center;
+  padding-right: 90px;
+}
+
+.lives div{
+  width: 250px;
+  height: 50px;
+  border: 1px solid black;
 }
 
 .grid div {
