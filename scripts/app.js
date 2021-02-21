@@ -10,8 +10,6 @@ function init() {
   const bearClass = 'bear'
   const bearStartPosition = 76
   let bearCurrentPosition = 76
-
-  // const grassCells = [36, 37, 38, 39, 40, 41, 42, 43, 44]
   
   const carClass = 'car'
   const carStartPosition = 63
@@ -20,9 +18,6 @@ function init() {
   const logClass = 'log'
   const logStartPosition = 35
   let logCurrentPosition = 35
-
-  // const caveClass = 'cave'
-  // const cavePosition = [1, 3, 5, 7]
 
   const timerScreen = document.querySelector('.time-screen p')
   const button = document.querySelector('button')
@@ -77,12 +72,43 @@ function init() {
 // * Add car to start cell
   function addCar(position) {
     cells[position].classList.add(carClass)
-}
+  }
+
+// * Move car
+  // function moveCar() {
+  //   timerID = setInterval(() => {
+  //     if (carStartPosition > width) {
+  //       console.log()
+  //     }
+  //   }, 1000)
+  // }
 
 // * Add log to start cell
   function addLog(position) {
     cells[position].classList.add(logClass)
-}
+  }
+
+// * Remove log
+  function removeLog(position) {
+    cells[position].classList.remove(logClass)
+  }
+
+// * Move log
+  function moveLog() {
+    timerID = setInterval(() => {
+      removeLog(logCurrentPosition)
+
+      if (logCurrentPosition <= 27) {
+        clearInterval(timerID)
+      } else {
+        logCurrentPosition--
+      }
+      addLog(logCurrentPosition)
+    }, 700)
+    
+  }
+  
+
 
 // * Main game timer, linked to start button
 
@@ -101,18 +127,11 @@ function init() {
 // * Timer for car animation
   function startCarObstacles(event) {
     timerID = setInterval(() => {
-      
+    
 
     }, 1000)
   }
 
-
-  // function addCave(position) {
-  //   for (let i = 0; i < cellCount; i++) {
-  //     cells[position].classList.add(caveClass)
-  //   }
-  // }
-  
 
 // * EVENT LISTENERS
 
@@ -122,10 +141,12 @@ function init() {
 
   button.addEventListener('click', startTimer)
   button.addEventListener('click', startCarObstacles)
-
+  button.addEventListener('click', moveLog)
   addCar(carStartPosition)
   addLog(logStartPosition)
-  // addCave(cavePosition)
+
+  // moveCar()
+
   
 }
 
