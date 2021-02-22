@@ -50,6 +50,7 @@ function init() {
       cells.push(cell)
     }
     land()
+    home()
     addBear(bearStartPosition)
   }
 
@@ -62,15 +63,6 @@ function init() {
     removeLog(logCurrentPosition)
     removeLog(logCurrentPosition2)
   }
-
-  // * Add grass for safe areas
-
-  // landCells.forEach(addGrass)
-
-  // function addGrass() {
-  //   item.classList.add(landClass)
-  // }
-  
   
 
   // * Add bear (aka Frogger) to cell
@@ -124,20 +116,7 @@ function init() {
 
 
 
-  // * Grass for safe spots
-  function land() {
-    const landRows = cells.slice(36, 45)
-    const landRowsStart = cells.slice(72, 81)
-  
-    landRows.forEach(cell => {
-      cell.classList.add(landClass)
-    })
 
-    landRowsStart.forEach(cell => {
-      cell.classList.add(landClass)
-    })
-
-  }
 
   // * Caves for home - to win
   function home() {
@@ -147,6 +126,27 @@ function init() {
     })
     homeCave.forEach(cell => {
       cell.classList.add(caveClass)
+    })
+  }
+  // * Grass for safe spots
+  function land() {
+    const landRowsStart = cells.slice(72, 81)
+    const landRows = cells.slice(36, 45)
+    const homeRow = cells.slice(0, 9)
+    const homeGrass = homeRow.filter((cell, index) => {
+      return index % 2 === 0
+    })
+    
+    homeGrass.forEach(cell => {
+      cell.classList.add(landClass)
+    })
+
+    landRowsStart.forEach(cell => {
+      cell.classList.add(landClass)
+    })
+
+    landRows.forEach(cell => {
+      cell.classList.add(landClass)
     })
   }
 
