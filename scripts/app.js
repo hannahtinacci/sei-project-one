@@ -12,11 +12,9 @@ function init() {
   let bearCurrentPosition = 76
   
   const carClass = 'car'
-  const carStartPosition = 63
   let carCurrentPosition = 63
 
   const logClass = 'log'
-  const logStartPosition = 35
   let logCurrentPosition = 35
   let logCurrentPosition2 = 17
 

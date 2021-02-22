@@ -1,9 +1,9 @@
 .page-wrapper {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url('../assets/adp8_4ucw_170602.jpg');
-  /* background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)); */
   background-size: cover;
+  background-repeat: no-repeat;
   font-family: 'Permanent Marker', cursive;
   color: white;
 }
@@ -13,6 +13,7 @@ header {
   padding-top: 20px;
   padding-bottom: 50px;
 }
+
 nav {
   display: flex;
   justify-content: space-around;
@@ -27,7 +28,6 @@ button {
 }
 
 .score {
-  /* justify-content: center; */
   margin-top: 10px;
 }
 
@@ -60,7 +60,7 @@ button {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid black;
+  border: 1px solid lightgrey;
   height: 700px;
   width: 700px;
   background-color: white;
@@ -79,7 +79,7 @@ button {
   padding-right: 120px;
 }
 
-.lives div{
+.lives div {
   width: 150px;
   height: 50px;
   padding-top: 7px;
@@ -132,8 +132,6 @@ button {
   background-image: url('../assets/log.png');
   background-size: contain;
 }
-
-
 
 footer {
   position: absolute;
