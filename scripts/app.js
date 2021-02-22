@@ -1,6 +1,6 @@
 function init() {
 
-// * VARIABLES
+  // * VARIABLES
   const grid = document.querySelector('.grid')
 
   const width = 9
@@ -12,6 +12,7 @@ function init() {
   let bearCurrentPosition = 76
   
   const carClass = 'car'
+  const carStartPosition = 63
   let carCurrentPosition = 63
 
   const logClass = 'log'
@@ -28,7 +29,7 @@ function init() {
   let caveCells = []
 
   const landClass = 'grass'
-  const landCells = [36, 37, 38, 39, 40, 41, 42, 43, 44]
+  
 
   const timerScreen = document.querySelector('.time-screen').querySelector('p')
   const button = document.querySelector('button')
@@ -40,7 +41,7 @@ function init() {
   let score = 0
   
 
-// * GRID
+  // * GRID
   function createGrid(bearStartPosition) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
@@ -51,7 +52,10 @@ function init() {
     addBear(bearStartPosition)
   }
 
-// * Clear grid for end of game
+  const landCells = cells.slice(36, 45)
+  console.log(landCells)
+
+  // * Clear grid for end of game
   function clearGrid() {
     removeBear(bearCurrentPosition)
     removeCar(carCurrentPosition)
@@ -61,22 +65,27 @@ function init() {
     removeLog(logCurrentPosition2)
   }
 
-// * Add grass for safe areas
-  // function addGrass(position) {
-  //   cells[position].classList.add(landClass)
-  // }
+  // * Add grass for safe areas
 
-// * Add bear (aka Frogger) to cell
+  landCells.forEach(addGrass)
+
+  function addGrass() {
+    item.classList.add(landClass)
+  }
+  
+  
+
+  // * Add bear (aka Frogger) to cell
   function addBear(position) {
     cells[position].classList.add(bearClass)
   }
 
-// * Remove bear (aka Frogger) from cell
+  // * Remove bear (aka Frogger) from cell
   function removeBear(position) {
     cells[position].classList.remove(bearClass)
   }
 
-// * Move bear 
+  // * Move bear 
   function handleKeyUp(event) {
     const key = event.keyCode
     
@@ -97,13 +106,13 @@ function init() {
     addBear(bearCurrentPosition)
   }
 
-// * Detect collision
- 
+  // * Detect collision
+
     
 
 
 
-// * Home spots
+  // * Home spots
   // function home() {
   //   if (bearCurrentPosition === 1) {
   //     score += 50
@@ -114,47 +123,50 @@ function init() {
 
   // }
 
-// * Add car to start cell
+  // * Add car to start cell
   function addCar(position) {
     cells[position].classList.add(carClass)
   }
 
-// * Remove car
+  // * Remove car
   function removeCar(position) {
     cells[position].classList.remove(carClass)
   }
-// * Move car
+
+  // * Move car
   function moveCar() {
     timerID = setInterval(() => {
       removeCar(carCurrentPosition)
 
-      if (carCurrentPosition >= 71) {
+      if (carCurrentPosition === 71) {
+        carCurrentPosition -= 8
+        
         // clearInterval(timerID)
       } else {
         carCurrentPosition++
       }
       addCar(carCurrentPosition)
     }, 300)
-  
-}
+  }
 
-// * Add truck
+  // * Add truck
   function addTruck(position) {
     cells[position].classList.add(truckClass)
   }
 
-// * Remove truck
+  // * Remove truck
   function removeTruck(position) {
     cells[position].classList.remove(truckClass)
   }
 
-// * Move truck
+  // * Move truck
   function moveTruck() {
     timerID = setInterval(() => {
       removeTruck(truckCurrentPosition)
 
-      if (truckCurrentPosition >= 62) {
-        clearInterval(timerID)
+      if (truckCurrentPosition === 62) {
+        truckCurrentPosition -= 8
+        // clearInterval(timerID)
       } else {
         truckCurrentPosition++
       }
@@ -162,7 +174,7 @@ function init() {
     }, 680)
   }
 
-// * Add bus
+  // * Add bus
   function addBus(position) {
     cells[position].classList.add(busClass)
   }
@@ -172,50 +184,53 @@ function init() {
     cells[position].classList.remove(busClass)
   }
 
-// * Move bus
+  // * Move bus
   function moveBus() {
     timerID = setInterval(() => {
       removeBus(busCurrentPosition)
 
-      if (busCurrentPosition <= 45) {
-        clearInterval(timerID)
+      if (busCurrentPosition === 45) {
+        busCurrentPosition += 8
+        // clearInterval(timerID)
       } else {
         busCurrentPosition--
       }
       addBus(busCurrentPosition)
     }, 650)
-}
+  }
 
-// * Add log to start cell
+  // * Add log to start cell
   function addLog(position) {
     cells[position].classList.add(logClass)
   }
 
-// * Remove log
+  // * Remove log
   function removeLog(position) {
     cells[position].classList.remove(logClass)
   }
 
-// * Move log
+  // * Move log
   function moveLog() {
     timerID = setInterval(() => {
       removeLog(logCurrentPosition)
       removeLog(logCurrentPosition2)
 
-      if (logCurrentPosition <= 27 && logCurrentPosition2 <= 9) {
-        clearInterval(timerID)
+      if (logCurrentPosition === 27 && logCurrentPosition2 === 9) {
+        logCurrentPosition += 8
+        logCurrentPosition2 += 8
+        // clearInterval(timerID)
       } else {
         logCurrentPosition--
         logCurrentPosition2--
       }
       addLog(logCurrentPosition)
       addLog(logCurrentPosition2)
-    }, 600, 700)
+    }, 500)
   }
   
 
 
-// * Main game timer, linked to start button
+  // * Main game timer, linked to start button
 
   function startTimer() {
     timerID = setInterval(() => {
@@ -225,15 +240,21 @@ function init() {
         clearGrid()
         
         timerScreen.innerHTML = 'GAME OVER!'
-        timerScreen.classList.add('animate_flash')
       } else {
         timerScreen.innerHTML = timeRemaining
       }
     }, 1000)
   }
+  
+  // * Function to select road obstacle function at random
+  // const roadFunctions = [moveCar, moveTruck, moveBus]
+  // randomFunction = roadFunctions[Math.floor(Math.random() * (roadFunctions.length))]
+
+  // console.log(randomFunction)
 
 
-// * EVENT LISTENERS
+
+  // * EVENT LISTENERS
 
   document.addEventListener('keyup', handleKeyUp)
   
@@ -249,10 +270,9 @@ function init() {
   addLog(logCurrentPosition)
   addTruck(truckCurrentPosition)
   addBus(busCurrentPosition)
-  // addGrass()
   // home()
 
-
+ 
   
 }
 
