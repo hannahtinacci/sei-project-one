@@ -110,6 +110,9 @@ button {
 .grid div.grass {
   background-image: url('../assets/grass.png');
   background-size: contain;
+  background-position: left bottom;
+  bottom: 0;
+  
 }
 
 .grid div.car {

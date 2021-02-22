@@ -126,14 +126,19 @@ function init() {
 
 
 
-  // * Home spots
-  function home() {
-    const cells = document.querySelectorAll('.grid div')
-    const land = cells.slice(36, 45)
+  // * Safe spots
+  function land() {
+    const landRows = cells.slice(36, 45)
+    const landRowsStart = cells.slice(72, 81)
   
-    cells.forEach(cell => {
+    landRows.forEach(cell => {
       cell.classList.add(landClass)
     })
+
+    landRowsStart.forEach(cell => {
+      cell.classList.add(landClass)
+    })
+
   }
 
   // * Add car to start cell
@@ -285,7 +290,7 @@ function init() {
   addLog(logCurrentPosition)
   addTruck(truckCurrentPosition)
   addBus(busCurrentPosition)
-  home()
+  land()
   // detectCollision()
  
   
