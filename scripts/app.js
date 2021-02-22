@@ -52,8 +52,8 @@ function init() {
     addBear(bearStartPosition)
   }
 
-  const landCells = cells.slice(36, 45)
-  console.log(landCells)
+  // const landCells = cells.slice(36, 45)
+  // console.log(landCells)
 
   // * Clear grid for end of game
   function clearGrid() {
@@ -67,11 +67,11 @@ function init() {
 
   // * Add grass for safe areas
 
-  landCells.forEach(addGrass)
+  // landCells.forEach(addGrass)
 
-  function addGrass() {
-    item.classList.add(landClass)
-  }
+  // function addGrass() {
+  //   item.classList.add(landClass)
+  // }
   
   
 
@@ -108,20 +108,33 @@ function init() {
 
   // * Detect collision
 
+  // function detectCollision() {
     
+  //   const cells = document.querySelectorAll('.grid div')
+  //   console.log(cells)
+
+  //   cells.forEach(cell => {
+  //     cell.classList.contains(carClass)
+  //   })
+    
+
+    
+  //   // console.log('CAR HERE')
+
+
+  // }
 
 
 
   // * Home spots
-  // function home() {
-  //   if (bearCurrentPosition === 1) {
-  //     score += 50
-  //     totalScore.innerHTML = score
-  //   } else {
-
-  //   }
-
-  // }
+  function home() {
+    const cells = document.querySelectorAll('.grid div')
+    const land = cells.slice(36, 45)
+  
+    cells.forEach(cell => {
+      cell.classList.add(landClass)
+    })
+  }
 
   // * Add car to start cell
   function addCar(position) {
@@ -246,6 +259,8 @@ function init() {
     }, 1000)
   }
   
+
+
   // * Function to select road obstacle function at random
   // const roadFunctions = [moveCar, moveTruck, moveBus]
   // randomFunction = roadFunctions[Math.floor(Math.random() * (roadFunctions.length))]
@@ -270,8 +285,8 @@ function init() {
   addLog(logCurrentPosition)
   addTruck(truckCurrentPosition)
   addBus(busCurrentPosition)
-  // home()
-
+  home()
+  // detectCollision()
  
   
 }
