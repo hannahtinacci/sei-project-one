@@ -1,9 +1,11 @@
 .page-wrapper {
   position: relative;
   height: 100vh;
-  background-image: url('../');
+  background-image: url('../assets/adp8_4ucw_170602.jpg');
   /* background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)); */
-  background-size: contain;
+  background-size: cover;
+  font-family: 'Permanent Marker', cursive;
+  color: white;
 }
 
 header {
@@ -21,6 +23,7 @@ button {
   padding: 20px;
   width: 170px;
   margin-top: 10px;
+  font-family: 'Permanent Marker', cursive;
 }
 
 .score {
@@ -35,7 +38,7 @@ button {
 .time-screen {
   width: 150px;
   height: 50px;
-  border: 1px solid black;
+
 }
 
 .play-area-wrapper {
@@ -48,7 +51,6 @@ button {
 .score p {
   width: 150px;
   height: 50px;
-  border: 1px solid black;
 }
 
 .grid-wrapper {
@@ -61,6 +63,8 @@ button {
   border: 1px solid black;
   height: 700px;
   width: 700px;
+  background-color: white;
+  color: black;
 }
 
 .game-info {
@@ -78,9 +82,12 @@ button {
 .lives div{
   width: 150px;
   height: 50px;
-  border: 1px solid black;
   padding-top: 7px;
   
+}
+
+.hidden {
+  display: none;
 }
 
 .grid div {
@@ -125,6 +132,7 @@ button {
   background-image: url('../assets/log.png');
   background-size: contain;
 }
+
 
 
 footer {
