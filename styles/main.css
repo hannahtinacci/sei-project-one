@@ -104,14 +104,16 @@ button {
 
 .grid div.cave {
   background-image: url('../assets/cave.png');
-  background-size: cover;
+  background-size: contain;
 }
 
 .grid div.grass {
   background-image: url('../assets/grass.png');
   background-size: contain;
-  background-position: left bottom;
-  bottom: 0;
+  background-position: bottom;
+  /* bottom: 0;
+  left: 0;
+  background-repeat: no-repeat; */
   
 }
 

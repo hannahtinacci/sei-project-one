@@ -49,11 +49,9 @@ function init() {
       grid.appendChild(cell)
       cells.push(cell)
     }
+    land()
     addBear(bearStartPosition)
   }
-
-  // const landCells = cells.slice(36, 45)
-  // console.log(landCells)
 
   // * Clear grid for end of game
   function clearGrid() {
@@ -126,7 +124,7 @@ function init() {
 
 
 
-  // * Safe spots
+  // * Grass for safe spots
   function land() {
     const landRows = cells.slice(36, 45)
     const landRowsStart = cells.slice(72, 81)
@@ -139,6 +137,17 @@ function init() {
       cell.classList.add(landClass)
     })
 
+  }
+
+  // * Caves for home - to win
+  function home() {
+    const homeRow = cells.slice(0, 9)
+    const homeCave = homeRow.filter((cell, index) => {
+      return index % 2 !== 0
+    })
+    homeCave.forEach(cell => {
+      cell.classList.add(caveClass)
+    })
   }
 
   // * Add car to start cell
@@ -291,6 +300,7 @@ function init() {
   addTruck(truckCurrentPosition)
   addBus(busCurrentPosition)
   land()
+  home()
   // detectCollision()
  
   
