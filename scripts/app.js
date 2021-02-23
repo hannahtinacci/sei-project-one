@@ -6,7 +6,7 @@ function init() {
   const width = 9
   const cellCount = width * width
   const cells = []
-
+  
   const bearClass = 'bear'
   const bearStartPosition = 76
   let bearCurrentPosition = 76
@@ -26,7 +26,6 @@ function init() {
   let busCurrentPosition = 53
 
   const caveClass = 'cave'
-  let caveCells = []
 
   const landClass = 'grass'
   
@@ -36,7 +35,6 @@ function init() {
   let timeRemaining = 30
   let timerID = null
 
-  // const totalScore = document.querySelector('.score').querySelector('p')
   const totalScore = document.querySelector('#score-screen')
   let score = 0
   
@@ -98,33 +96,43 @@ function init() {
 
   // * Detect collision
 
-  // function detectCollision() {
+  function detectCollision(event) {
+    let carOccupied = document.getElementsByClassName(carClass)
     
-  //   const cells = document.querySelectorAll('.grid div')
-  //   console.log(cells)
+    const key = event.keyCode
 
-  //   cells.forEach(cell => {
-  //     cell.classList.contains(carClass)
-  //   })
+    if (key === 37 && bearCurrentPosition === carOccupied){
+      console.log('CAR HERE')
+    }
+  
     
-
-    
-  //   // console.log('CAR HERE')
+  
 
 
-  // }
+  }
 
 
-  // * Home safe - to win
+  // * Home safe
   function homeSafe(event) {
     const key = event.keyCode
 
-    if (key === 38 && bearCurrentPosition === 1 || key === 38 && bearCurrentPosition === 3) {
+    if (key === 38 && bearCurrentPosition === 1) {
       score += 50
       totalScore.innerHTML = score
-    } 
+      // add :focus
+    } else if (key === 38 && bearCurrentPosition === 3) {
+      score += 50
+      totalScore.innerHTML = score
 
-    
+    } else if (key === 38 && bearCurrentPosition === 5) {
+      score += 50
+      totalScore.innerHTML = score
+    } else if (key === 38 && bearCurrentPosition === 7) {
+      score += 50
+      totalScore.innerHTML = score
+    }
+    addBear(bearCurrentPosition)
+
   }
 
 
@@ -160,7 +168,7 @@ function init() {
     })
   }
 
-  // * Add car to start cell
+  // * Add car 
   function addCar(position) {
     cells[position].classList.add(carClass)
   }
@@ -249,6 +257,7 @@ function init() {
   // * Move log
   function moveLog() {
     timerID = setInterval(() => {
+      addLog(logCurrentPosition)
       removeLog(logCurrentPosition)
       removeLog(logCurrentPosition2)
 
@@ -269,13 +278,11 @@ function init() {
 
   // * Main game timer, linked to start button
 
-  function startTimer() {
+  function gameTimer() {
     timerID = setInterval(() => {
       timeRemaining--
       if (timeRemaining < 0) {
         clearInterval(timerID)
-        clearGrid()
-        
         timerScreen.innerHTML = 'GAME OVER!'
       } else {
         timerScreen.innerHTML = timeRemaining
@@ -299,7 +306,7 @@ function init() {
 
   createGrid(bearStartPosition)
 
-  button.addEventListener('click', startTimer)
+  button.addEventListener('click', gameTimer)
   button.addEventListener('click', moveCar)
   button.addEventListener('click', moveLog)
   button.addEventListener('click', moveTruck)
@@ -313,7 +320,8 @@ function init() {
   addBus(busCurrentPosition)
   land()
   home()
-  // detectCollision()
+  
+  document.addEventListener('keyup', detectCollision)
  
   
 }

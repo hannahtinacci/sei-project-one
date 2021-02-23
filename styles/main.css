@@ -102,6 +102,12 @@ button {
   background-repeat: no-repeat;
 }
 
+:focus {
+  background-image: url('../assets/bear.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .grid div.cave {
   background-image: url('../assets/cave.png');
   background-size: contain;
@@ -135,6 +141,10 @@ button {
 .grid div.log {
   background-image: url('../assets/log.png');
   background-size: contain;
+}
+
+.grid div.water {
+  background-color: #99ddff;
 }
 
 footer {
