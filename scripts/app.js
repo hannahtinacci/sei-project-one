@@ -5,14 +5,13 @@ function init() {
 
   const width = 9
   const cellCount = width * width
-  const cells = []
+  let cells = []
 
   const bearClass = 'bear'
   const bearStartPosition = 76
   let bearCurrentPosition = 76
   
   const carClass = 'car'
-  const carStartPosition = 63
   let carCurrentPosition = 63
 
   const logClass = 'log'
@@ -29,12 +28,10 @@ function init() {
   const caveClass = 'cave'
   let allHome = 4
 
- 
-  
-
   const landClass = 'grass'
   
-  const timerScreen = document.querySelector('.time-screen').querySelector('p')
+
+  const timerScreen = document.querySelector('.time-screen').querySelector('h3')
   const button = document.querySelector('button')
   let timeRemaining = 30
   let timerID = null
@@ -44,7 +41,7 @@ function init() {
   
   let lives = 3
 
-  // * GRID
+  // * Create grid
   function createGrid(bearStartPosition) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
@@ -56,6 +53,8 @@ function init() {
     home()
     addBear(bearStartPosition)
   }
+
+
 
   // * Clear grid for end of game
   function clearGrid() {
@@ -102,47 +101,35 @@ function init() {
   
   // * Detect collision
 
-  function detectCollision(event) {
-    const roadCells = cells.slice(45, 72)
-    let carOccupied = document.getElementsByClassName('car')[0].innerText
+  function detectCollision() {
+    const cellsArray = Array.from(cells)
     
-    const key = event.keyCode
-
-    
-
-    if (key === 37 && bearCurrentPosition === roadCells.includes('car')){
-      console.log('CAR HERE')
+    if (cellsArray.classList.includes(carClass)) {
+      console.log('OUCH')
     }
   
 
   }
 
-
   // * Home safe
   function homeSafe(event) {
-    const key = event.keyCode
+    
+    // const homeRow = cells.slice(0, 9)
+    // const homeCave = homeRow.filter((cell, index) => {
+    //   return index % 2 !== 0
+    // })
 
-    if (key === 38 && bearCurrentPosition === 1) {
+    if (bearCurrentPosition === 1 || bearCurrentPosition === 3 || bearCurrentPosition === 5 || bearCurrentPosition === 7) {
       score += 50
       totalScore.innerHTML = score
       allHome -= 1
-    } else if (key === 38 && bearCurrentPosition === 3) {
-      score += 50
-      totalScore.innerHTML = score
-      allHome -= 1
-    } else if (key === 38 && bearCurrentPosition === 5) {
-      score += 50
-      totalScore.innerHTML = score
-      allHome -= 1
-    } else if (key === 38 && bearCurrentPosition === 7) {
-      score += 50
-      totalScore.innerHTML = score
-      allHome -= 1
-    }
-    // addBear(bearCurrentPosition)
-
-
+      cells[bearCurrentPosition].classList.replace(caveClass, bearClass)
+      addBear(bearStartPosition)
+      
+    } 
+    
   }
+
 
   // * Once all 4 homes made to
   function youWin() {
@@ -201,14 +188,14 @@ function init() {
 
       if (carCurrentPosition === 71) {
         carCurrentPosition -= 8
-        
-        // clearInterval(timerID)
+
       } else {
         carCurrentPosition++
       }
       addCar(carCurrentPosition)
     }, 300)
   }
+
 
   // * Add truck
   function addTruck(position) {
@@ -332,6 +319,7 @@ function init() {
       if (timeRemaining < 0) {
         clearInterval(timerID)
         timerScreen.innerHTML = 'GAME OVER!'
+
       } else {
         timerScreen.innerHTML = timeRemaining
       }
@@ -348,7 +336,9 @@ function init() {
 
   // * Game Over function
   function gameOver() {
-    lives = 0
+    // timeRemaining = 0
+    lives = 0 
+
 
   }
 
@@ -375,8 +365,8 @@ function init() {
   home()
   waterAndRoad()
   
-  document.addEventListener('keyup', detectCollision)
-
+  // document.addEventListener('keyup', detectCollision)
+  detectCollision()
   youWin()
   gameOver()
 
