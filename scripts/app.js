@@ -115,10 +115,20 @@ function init() {
   // }
 
 
+  // * Home safe - to win
+  function homeSafe(event) {
+    const key = event.keyCode
+
+    if (key === 38 && bearCurrentPosition === 1 || key === 38 && bearCurrentPosition === 3) {
+      score += 50
+      totalScore.innerHTML = score
+    } 
+
+    
+  }
 
 
-
-  // * Caves for home - to win
+  // * Caves for home 
   function home() {
     const homeRow = cells.slice(0, 9)
     const homeCave = homeRow.filter((cell, index) => {
@@ -286,7 +296,7 @@ function init() {
   // * EVENT LISTENERS
 
   document.addEventListener('keyup', handleKeyUp)
-  
+
   createGrid(bearStartPosition)
 
   button.addEventListener('click', startTimer)
@@ -294,6 +304,8 @@ function init() {
   button.addEventListener('click', moveLog)
   button.addEventListener('click', moveTruck)
   button.addEventListener('click', moveBus)
+
+  document.addEventListener('keyup', homeSafe)
 
   addCar(carCurrentPosition)
   addLog(logCurrentPosition)
