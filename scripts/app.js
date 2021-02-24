@@ -35,7 +35,10 @@ function init() {
   const timerScreen = document.querySelector('.time-screen').querySelector('h3')
   const button = document.querySelector('button')
   let timeRemaining = 30
-  let timerID = null
+  let timerIDGame = null
+  let timerIDCar = null
+  let timerIDTruck = null
+  let timerIDBus = null
 
   const totalScore = document.querySelector('#score-screen')
   let score = 0
@@ -156,7 +159,8 @@ function init() {
   // * Once all 4 homes made to
   function youWin() {
     if (cells[1].classList.contains(homeBearClass) && cells[3].classList.contains(homeBearClass) && cells[5].classList.contains(homeBearClass) && cells[7].classList.contains(homeBearClass) && timeRemaining > 0) {
-      console.log('YOU WIN')
+      gameOver()
+
     } 
   }
 
@@ -205,7 +209,7 @@ function init() {
 
   // * Move car
   function moveCar() {
-    timerID = setInterval(() => {
+    timerIDCar = setInterval(() => {
       removeCar(carCurrentPosition)
 
       if (carCurrentPosition === 71 ) {
@@ -234,7 +238,7 @@ function init() {
 
   // * Move truck
   function moveTruck() {
-    timerID = setInterval(() => {
+    timerIDTruck = setInterval(() => {
       removeTruck(truckCurrentPosition)
 
       if (truckCurrentPosition === 62) {
@@ -261,7 +265,7 @@ function init() {
 
   // * Move bus
   function moveBus() {
-    timerID = setInterval(() => {
+    timerIDBus = setInterval(() => {
       removeBus(busCurrentPosition)
 
       if (busCurrentPosition === 45) {
@@ -343,11 +347,12 @@ function init() {
 
   // * Main game timer, linked to start button
 
+
   function gameTimer() {
-    timerID = setInterval(() => {
+    timerIDGame = setInterval(() => {
       timeRemaining--
       if (timeRemaining < 0) {
-        clearInterval(timerID)
+        clearInterval(timerIDGame)
         timerScreen.innerHTML = 'GAME OVER!'
 
       } else {
@@ -372,10 +377,13 @@ function init() {
 
   // * Game Over function
   function gameOver() {
-    // timeRemaining = 0
-    // lives = 0 
-
-
+    clearInterval(timerIDGame)
+    clearInterval(timerIDCar)
+    removeCar(carCurrentPosition)
+    clearInterval(timerIDTruck)
+    removeTruck(truckCurrentPosition)
+    clearInterval(timerIDBus)
+    removeBus(busCurrentPosition)
   }
 
   // * EVENT LISTENERS
@@ -400,9 +408,8 @@ function init() {
   land()
   home()
   waterAndRoad()
-  // addPlayerIndex()
   fallenIntoWater()
-  // document.addEventListener('keyup', detectCollision)
+
   detectCollision()
   // youWin()
   gameOver()
