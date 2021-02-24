@@ -148,6 +148,7 @@ h3 {
 
 .grid div.ouch {
   background-image: url('../assets/ouch.png');
+  background-size: contain;
   
 }
 

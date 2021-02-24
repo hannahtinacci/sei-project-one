@@ -40,9 +40,10 @@ function init() {
   const totalScore = document.querySelector('#score-screen')
   let score = 0
   let lives = 3
+  const heart1 = document.getElementById('#heart1')
   
 
-  // * FUNCTIONS 
+  // * FUNCTIONS - initial set up and obstacles
 
   // Create grid
   function createGrid(bearStartPosition) {
@@ -55,6 +56,53 @@ function init() {
     land()
     home()
     addBear(bearStartPosition)
+  }
+
+  // Caves for home 
+  function home() {
+    const homeRow = cells.slice(0, 9)
+    const homeCave = homeRow.filter((cell, index) => {
+      return index % 2 !== 0
+    })
+    homeCave.forEach(cell => {
+      cell.classList.add(caveClass)
+    })
+  }
+
+  // * Water and road
+  function waterAndRoad() {
+    const waterSections = cells.slice(9, 36)
+    const roadSections = cells.slice(45, 72)
+
+    const water = waterSections.forEach(cell => {
+      cell.classList.add('water')
+    });
+
+    const road = roadSections.forEach(cell => {
+      cell.classList.add('road')
+    })
+  }
+
+  // Grass for safe spots
+  function land() {
+    const landRowsStart = cells.slice(72, 81)
+    const landRows = cells.slice(36, 45)
+    const homeRow = cells.slice(0, 9)
+    const homeGrass = homeRow.filter((cell, index) => {
+      return index % 2 === 0
+    })
+    
+    homeGrass.forEach(cell => {
+      cell.classList.add(landClass)
+    })
+
+    landRowsStart.forEach(cell => {
+      cell.classList.add(landClass)
+    })
+
+    landRows.forEach(cell => {
+      cell.classList.add(landClass)
+    })
   }
 
   // * Add bear (aka Frogger) to cell
@@ -95,10 +143,22 @@ function init() {
     
     if (cells[bearCurrentPosition].classList.contains(carClass)) {
       lives -= 1
-    } if (cells[bearCurrentPosition].classList.contains(truckClass)) {
+    } else if (cells[bearCurrentPosition].classList.contains(truckClass)) {
       lives -= 1
     } else if (cells[bearCurrentPosition].classList.contains(busClass)) {
       lives -= 1
+    }
+    
+    // setTimeout(() => {
+    //   cells[bearCurrentPosition].classList.add(beenHitClass)
+    //   cells[bearCurrentPosition].classList.remove(beenHitClass)
+    // }, 150)
+    
+    
+    if (lives === 0) {
+      gameOver()
+    } else {
+      
     }
       // cells[bearCurrentPosition].classlist.replace(beenHitClass)
       // reset to start position
@@ -107,13 +167,23 @@ function init() {
 
   
   // * Fallen into water
-    function fallenIntoWater() {
+  function fallenIntoWater() {
     if (bearCurrentPosition === 30 && cells[bearCurrentPosition].classList.contains('water')) {
       lives -= 1
     
     }
   }
 
+  // ! check if log is present so bear can hitch a ride - how to handle going off screen and losing a life from here?
+function logForRide() {
+  if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 9 && bearCurrentPosition < 18) {
+    bearCurrentPosition--
+  } else if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 18 && bearCurrentPosition < 27) {
+    bearCurrentPosition++
+  } else if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 27 && bearCurrentPosition < 36) {
+    bearCurrentPosition--
+  }
+}
 
   // Home safe
   function homeSafe(event) {
@@ -147,38 +217,8 @@ function init() {
     } 
   }
 
-  // Caves for home 
-  function home() {
-    const homeRow = cells.slice(0, 9)
-    const homeCave = homeRow.filter((cell, index) => {
-      return index % 2 !== 0
-    })
-    homeCave.forEach(cell => {
-      cell.classList.add(caveClass)
-    })
-  }
 
-  // Grass for safe spots
-  function land() {
-    const landRowsStart = cells.slice(72, 81)
-    const landRows = cells.slice(36, 45)
-    const homeRow = cells.slice(0, 9)
-    const homeGrass = homeRow.filter((cell, index) => {
-      return index % 2 === 0
-    })
-    
-    homeGrass.forEach(cell => {
-      cell.classList.add(landClass)
-    })
 
-    landRowsStart.forEach(cell => {
-      cell.classList.add(landClass)
-    })
-
-    landRows.forEach(cell => {
-      cell.classList.add(landClass)
-    })
-  }
 
   // * Add car 
   function addCar(position) {
@@ -202,12 +242,28 @@ function init() {
       }
       addCar(carCurrentPosition)
       if (carCurrentPosition === bearCurrentPosition) {
+        // cells[carCurrentPosition].classList.add(beenHitClass)
+        // setTimeout(() => {
+        //   cells[carCurrentPosition].classList.remove(beenHitClass)
+        // }, 275)
+        // reset()
         lives -= 1
+        heart1.classList.add('hidden')
+        console.log('HEART1')
+        if (lives === 0) {
+          gameOver()
+        }
       }
     }, 300)
 
   }
+  // * Reset function - for when collision detected
+  function reset() {
+    clearInterval(timerIDCar)
+    bearCurrentPosition = bearStartPosition
+   
 
+  }
 
   // * Add truck
   function addTruck(position) {
@@ -231,8 +287,13 @@ function init() {
         truckCurrentPosition++
       }
       addTruck(truckCurrentPosition)
-      if (truckCurrentPosition === bearCurrentPosition)
+      if (truckCurrentPosition === bearCurrentPosition) {
         lives -= 1
+      }
+      if (lives === 0) {
+        gameOver()
+      }
+      
     }, 490)
   }
 
@@ -260,6 +321,9 @@ function init() {
       addBus(busCurrentPosition)
       if (busCurrentPosition === bearCurrentPosition) {
         lives -= 1
+      }
+      if (lives === 0) {
+        gameOver()
       }
     }, 415)
   }
@@ -310,21 +374,7 @@ function init() {
   }
 
   
-  // * Water and road
-  function waterAndRoad() {
-    const waterSections = cells.slice(9, 36)
-    const roadSections = cells.slice(45, 72)
 
-    const water = waterSections.forEach(cell => {
-      cell.classList.add('water')
-    });
-
-    const road = roadSections.forEach(cell => {
-      cell.classList.add('road')
-    })
-
-
-  }
 
 
 
@@ -387,26 +437,13 @@ function init() {
   createGrid(bearStartPosition)
 
   button.addEventListener('click', startGame)
-  // button.addEventListener('click', moveCar)
-  // button.addEventListener('click', moveLog)
-  // button.addEventListener('click', moveLog2)
-  // button.addEventListener('click', moveTruck)
-  // button.addEventListener('click', moveBus)
 
   document.addEventListener('keyup', homeSafe)
 
-  addCar(carCurrentPosition)
-  addLog(logCurrentPosition)
-  addTruck(truckCurrentPosition)
-  addBus(busCurrentPosition)
   land()
   home()
   waterAndRoad()
-  fallenIntoWater()
-
-  detectCollision()
-  // youWin()
-  gameOver()
+  // fallenIntoWater()
 
 }
 
