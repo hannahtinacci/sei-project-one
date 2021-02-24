@@ -120,6 +120,14 @@ h3 {
   width: 11%;
   border: none;
 }
+.grid div.grass {
+  /* background-image: url('../assets/grass.png'); 
+  background-size: contain;
+  background-position: bottom;
+  bottom: 0;
+  background-repeat: no-repeat; */
+  /* background-image: linear-gradient(white, green) ; */
+}
 
 .grid div.bear {
   background-image: url('../assets/bear.png');
@@ -138,14 +146,11 @@ h3 {
   background-size: contain;
 }
 
-.grid div.grass {
-  /* background-image: url('../assets/grass.png'); 
-  background-size: contain;
-  background-position: bottom;
-  bottom: 0;
-  background-repeat: no-repeat; */
-  /* background-image: linear-gradient(white, green) ; */
+.grid div.ouch {
+  background-image: url('../assets/ouch.png');
+  
 }
+
 
 .grid div.car {
   background-image: url('../assets/car.png');

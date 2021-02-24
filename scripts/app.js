@@ -1,36 +1,33 @@
 function init() {
 
   // * VARIABLES
-  const grid = document.querySelector('.grid')
+  // Grid
 
+  const grid = document.querySelector('.grid')
   const width = 9
   const cellCount = width * width
   const cells = []
   
+  // Grid background classes
   const bearClass = 'bear'
   const bearStartPosition = 76
   let bearCurrentPosition = 76
   const homeBearClass = 'homeBear'
-
   const carClass = 'car'
   let carCurrentPosition = 63
-
   const logClass = 'log'
   let logCurrentPosition = 35
   let logCurrentPosition2 = 17
   let logCurrentPosition3 = 18
-  
   const truckClass = 'truck'
   let truckCurrentPosition = 54
-
   const busClass = 'bus'
   let busCurrentPosition = 53
-
   const caveClass = 'cave'
-  let allHome = 0
-
   const landClass = 'grass'
+  const beenHitClass = 'ouch'
 
+  // Document selectors and timers
   const timerScreen = document.querySelector('.time-screen').querySelector('h3')
   const button = document.querySelector('button')
   let timeRemaining = 30
@@ -40,13 +37,14 @@ function init() {
   let timerIDBus = null
   let timerIDLog1 = null
   let timerIDLog2 = null
-
   const totalScore = document.querySelector('#score-screen')
   let score = 0
   let lives = 3
   
 
-  // * Create grid
+  // * FUNCTIONS 
+
+  // Create grid
   function createGrid(bearStartPosition) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
@@ -59,10 +57,6 @@ function init() {
     addBear(bearStartPosition)
   }
 
-
-
-
-
   // * Add bear (aka Frogger) to cell
   function addBear(position) {
     cells[position].classList.add(bearClass)
@@ -73,13 +67,13 @@ function init() {
     cells[position].classList.remove(bearClass)
   }
 
-  // * Move bear 
+  // Move bear 
   function moveBear(event) {
     const key = event.keyCode
     
     removeBear(bearCurrentPosition)
 
-    if (key === 39 && bearCurrentPosition % width - 1) {
+    if (key === 39 && (bearCurrentPosition + 1) % width !== 0) {
       bearCurrentPosition++
     } else if (key === 37 && bearCurrentPosition % width !== 0) {
       bearCurrentPosition--
@@ -95,18 +89,19 @@ function init() {
   }
 
 
-  // * Detect collision
+  // Detect collision
 
   function detectCollision() {
     
     if (cells[bearCurrentPosition].classList.contains(carClass)) {
       lives -= 1
-      // reset to start position
     } if (cells[bearCurrentPosition].classList.contains(truckClass)) {
       lives -= 1
     } else if (cells[bearCurrentPosition].classList.contains(busClass)) {
       lives -= 1
     }
+      // cells[bearCurrentPosition].classlist.replace(beenHitClass)
+      // reset to start position
     // gameOver()
   }
 
@@ -120,12 +115,11 @@ function init() {
   }
 
 
-  // * Home safe
+  // Home safe
   function homeSafe(event) {
     if (bearCurrentPosition === 1 || bearCurrentPosition === 3 || bearCurrentPosition === 5 || bearCurrentPosition === 7) {
       score += 50
       totalScore.innerHTML = score
-      allHome += 1
       cells[bearCurrentPosition].classList.replace(caveClass, homeBearClass)
     } 
     if (bearCurrentPosition === 1){
@@ -145,7 +139,7 @@ function init() {
   }
 
 
-  // * Once all 4 homes made to
+  // Once all 4 homes made to
   function youWin() {
     if (cells[1].classList.contains(homeBearClass) && cells[3].classList.contains(homeBearClass) && cells[5].classList.contains(homeBearClass) && cells[7].classList.contains(homeBearClass) && timeRemaining > 0) {
       gameOver()
@@ -153,7 +147,7 @@ function init() {
     } 
   }
 
-  // * Caves for home 
+  // Caves for home 
   function home() {
     const homeRow = cells.slice(0, 9)
     const homeCave = homeRow.filter((cell, index) => {
@@ -164,7 +158,7 @@ function init() {
     })
   }
 
-  // * Grass for safe spots
+  // Grass for safe spots
   function land() {
     const landRowsStart = cells.slice(72, 81)
     const landRows = cells.slice(36, 45)
