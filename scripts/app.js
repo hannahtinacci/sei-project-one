@@ -107,6 +107,7 @@ function init() {
       lives -= 1
     } else if (cells[bearCurrentPosition].classList.contains(busClass)) {
       lives -= 1
+      
     }
       
   }
@@ -129,27 +130,32 @@ function init() {
 
   // * Home safe
   function homeSafe(event) {
-    
-    // const homeRow = cells.slice(0, 9)
-    // const homeCave = homeRow.filter((cell, index) => {
-    //   return index % 2 !== 0
-    // })
-
     if (bearCurrentPosition === 1 || bearCurrentPosition === 3 || bearCurrentPosition === 5 || bearCurrentPosition === 7) {
       score += 50
       totalScore.innerHTML = score
       allHome += 1
       cells[bearCurrentPosition].classList.replace(caveClass, homeBearClass)
-      resetToStartPosition()
-      youWin()
     } 
-    
+    if (bearCurrentPosition === 1){
+      bearCurrentPosition += 75
+      addBear(bearCurrentPosition)
+    } else if (bearCurrentPosition === 3) {
+      bearCurrentPosition += 73
+      addBear(bearCurrentPosition)
+    } else if (bearCurrentPosition === 5) {
+      bearCurrentPosition += 71
+      addBear(bearCurrentPosition)
+    } else if (bearCurrentPosition === 7) {
+      bearCurrentPosition += 69
+      addBear(bearCurrentPosition)
+    }
+    youWin()
   }
 
 
   // * Once all 4 homes made to
   function youWin() {
-    if (cells[1].classList.contains(homeBearClass) && cells[3].classList.contains(homeBearClass) && cells[5].classList.contains(homeBearClass) && cells[7].classList.contains(homeBearClass)) {
+    if (cells[1].classList.contains(homeBearClass) && cells[3].classList.contains(homeBearClass) && cells[5].classList.contains(homeBearClass) && cells[7].classList.contains(homeBearClass) && timeRemaining > 0) {
       console.log('YOU WIN')
     } 
   }
@@ -240,7 +246,6 @@ function init() {
       addTruck(truckCurrentPosition)
       if (truckCurrentPosition === bearCurrentPosition)
         lives -= 1
-        console.log(lives)
     }, 490)
   }
 
@@ -266,6 +271,9 @@ function init() {
         busCurrentPosition--
       }
       addBus(busCurrentPosition)
+      if (busCurrentPosition === bearCurrentPosition) {
+        
+      }
     }, 415)
   }
 
