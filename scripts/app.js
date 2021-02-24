@@ -5,11 +5,12 @@ function init() {
 
   const width = 9
   const cellCount = width * width
-  let cells = []
+  const cells = []
 
   const bearClass = 'bear'
   const bearStartPosition = 76
   let bearCurrentPosition = 76
+  const homeBearClass = 'homeBear'
   
   const carClass = 'car'
   let carCurrentPosition = 63
@@ -26,10 +27,9 @@ function init() {
   let busCurrentPosition = 53
 
   const caveClass = 'cave'
-  let allHome = 4
+  let allHome = 0
 
   const landClass = 'grass'
-  
 
   const timerScreen = document.querySelector('.time-screen').querySelector('h3')
   const button = document.querySelector('button')
@@ -102,10 +102,10 @@ function init() {
   // * Detect collision
 
   function detectCollision() {
-    const cellsArray = Array.from(cells)
     
-    if (cellsArray.classList.includes(carClass)) {
-      console.log('OUCH')
+    if (cells[bearCurrentPosition].classList.contains(carClass)) {
+      lives -= 1
+      console.log(lives)
     }
   
 
@@ -122,8 +122,8 @@ function init() {
     if (bearCurrentPosition === 1 || bearCurrentPosition === 3 || bearCurrentPosition === 5 || bearCurrentPosition === 7) {
       score += 50
       totalScore.innerHTML = score
-      allHome -= 1
-      cells[bearCurrentPosition].classList.replace(caveClass, bearClass)
+      allHome += 1
+      cells[bearCurrentPosition].classList.add(homeBearClass)
       addBear(bearStartPosition)
       
     } 
@@ -333,6 +333,12 @@ function init() {
   // randomFunction = roadFunctions[Math.floor(Math.random() * (roadFunctions.length))]
 
   // console.log(randomFunction)
+
+  // * Start game 
+  function startGame() {
+    createGrid()
+
+  }
 
   // * Game Over function
   function gameOver() {

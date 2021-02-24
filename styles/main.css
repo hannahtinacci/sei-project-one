@@ -125,11 +125,11 @@ h3 {
   background-repeat: no-repeat;
 }
 
-/* :focus {
-  background-image: url('../assets/bear.png');
+.grid div.homeBear {
+  background-image: url('../assets/home-bear.png');
   background-size: contain;
   background-repeat: no-repeat;
-} */
+}
 
 .grid div.cave {
   background-image: url('../assets/cave.png');
