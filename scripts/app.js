@@ -6,7 +6,7 @@ function init() {
   const width = 9
   const cellCount = width * width
   const cells = []
-  console.log(cells)
+  
   const bearClass = 'bear'
   const bearStartPosition = 76
   let bearCurrentPosition = 76
@@ -39,8 +39,8 @@ function init() {
 
   const totalScore = document.querySelector('#score-screen')
   let score = 0
-  
   let lives = 3
+  
 
   // * Create grid
   function createGrid(bearStartPosition) {
@@ -101,16 +101,28 @@ function init() {
   function detectCollision() {
     
     if (cells[bearCurrentPosition].classList.contains(carClass)) {
-      
-      console.log('OUCH')
+      lives -= 1
+      // reset to start position
+    } if (cells[bearCurrentPosition].classList.contains(truckClass)) {
+      lives -= 1
+    } else if (cells[bearCurrentPosition].classList.contains(busClass)) {
+      lives -= 1
     }
+      
   }
 
+  // * Reset to start position
+    function resetToStartPosition() {
+      addBear(bearStartPosition) 
+      
+    }
 
-  function fallenIntoWater() {
+  
+  // * Fallen into water
+    function fallenIntoWater() {
     if (bearCurrentPosition === 30 && cells[bearCurrentPosition].classList.contains('water')) {
       lives -= 1
-      console.log(lives)
+    
     }
   }
 
@@ -128,20 +140,19 @@ function init() {
       totalScore.innerHTML = score
       allHome += 1
       cells[bearCurrentPosition].classList.replace(caveClass, homeBearClass)
-     
-     
-      
+      resetToStartPosition()
+      youWin()
     } 
     
   }
 
 
   // * Once all 4 homes made to
-  // function youWin() {
-  //   if (allHome = 4) {
-  //     console.log('YOU WIN')
-  //   } 
-  // }
+  function youWin() {
+    if (cells[1].classList.contains(homeBearClass) && cells[3].classList.contains(homeBearClass) && cells[5].classList.contains(homeBearClass) && cells[7].classList.contains(homeBearClass)) {
+      console.log('YOU WIN')
+    } 
+  }
 
   // * Caves for home 
   function home() {
@@ -193,16 +204,13 @@ function init() {
 
       if (carCurrentPosition === 71 ) {
         carCurrentPosition -= 8
-
       } else {
         carCurrentPosition++
       }
       addCar(carCurrentPosition)
       if (carCurrentPosition === bearCurrentPosition) {
-        console.log('OUGH')
+        lives -= 1
       }
-
-
     }, 300)
 
   }
@@ -230,6 +238,9 @@ function init() {
         truckCurrentPosition++
       }
       addTruck(truckCurrentPosition)
+      if (truckCurrentPosition === bearCurrentPosition)
+        lives -= 1
+        console.log(lives)
     }, 490)
   }
 
@@ -354,7 +365,7 @@ function init() {
   // * Game Over function
   function gameOver() {
     // timeRemaining = 0
-    lives = 0 
+    // lives = 0 
 
 
   }
