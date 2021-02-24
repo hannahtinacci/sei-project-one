@@ -20,7 +20,7 @@ function init() {
   let logCurrentPosition = 35
   let logCurrentPosition2 = 17
   let logCurrentPosition3 = 18
-
+  
   const truckClass = 'truck'
   let truckCurrentPosition = 54
 
@@ -57,16 +57,7 @@ function init() {
 
 
 
-  // * Clear grid for end of game
-  function clearGrid() {
-    removeBear(bearCurrentPosition)
-    removeCar(carCurrentPosition)
-    removeTruck(truckCurrentPosition)
-    removeBus(busCurrentPosition)
-    removeLog(logCurrentPosition)
-    removeLog(logCurrentPosition2)
-  }
-  
+
 
   // * Add bear (aka Frogger) to cell
   function addBear(position) {
@@ -95,7 +86,7 @@ function init() {
     } else {
       console.log('INVALID KEY')
     }
-
+    detectCollision()
     addBear(bearCurrentPosition)
   }
 
@@ -114,6 +105,7 @@ function init() {
       console.log('OUCH')
     }
   }
+
 
   function fallenIntoWater() {
     if (bearCurrentPosition === 30 && cells[bearCurrentPosition].classList.contains('water')) {
@@ -137,7 +129,7 @@ function init() {
       allHome += 1
       cells[bearCurrentPosition].classList.replace(caveClass, homeBearClass)
      
-      addPlayerIndex(bearStartPosition)
+     
       
     } 
     
@@ -199,14 +191,20 @@ function init() {
     timerID = setInterval(() => {
       removeCar(carCurrentPosition)
 
-      if (carCurrentPosition === 71) {
+      if (carCurrentPosition === 71 ) {
         carCurrentPosition -= 8
 
       } else {
         carCurrentPosition++
       }
       addCar(carCurrentPosition)
+      if (carCurrentPosition === bearCurrentPosition) {
+        console.log('OUGH')
+      }
+
+
     }, 300)
+
   }
 
 
@@ -383,7 +381,7 @@ function init() {
   land()
   home()
   waterAndRoad()
-  addPlayerIndex()
+  // addPlayerIndex()
   fallenIntoWater()
   // document.addEventListener('keyup', detectCollision)
   detectCollision()
