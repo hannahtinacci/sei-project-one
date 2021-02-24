@@ -12,7 +12,6 @@ function init() {
   let bearCurrentPosition = 76
   const homeBearClass = 'homeBear'
 
-
   const carClass = 'car'
   let carCurrentPosition = 63
 
@@ -75,7 +74,7 @@ function init() {
   }
 
   // * Move bear 
-  function handleKeyUp(event) {
+  function moveBear(event) {
     const key = event.keyCode
     
     removeBear(bearCurrentPosition)
@@ -95,11 +94,6 @@ function init() {
     addBear(bearCurrentPosition)
   }
 
-  
-  // // * PLayer index
-  // function addPlayerIndex() {
-  //   cells[bearStartPosition].classList.add(bearClass)
-  // }
 
   // * Detect collision
 
@@ -112,16 +106,9 @@ function init() {
       lives -= 1
     } else if (cells[bearCurrentPosition].classList.contains(busClass)) {
       lives -= 1
-      
     }
-      
+    // gameOver()
   }
-
-  // * Reset to start position
-    function resetToStartPosition() {
-      addBear(bearStartPosition) 
-      
-    }
 
   
   // * Fallen into water
@@ -278,7 +265,7 @@ function init() {
       }
       addBus(busCurrentPosition)
       if (busCurrentPosition === bearCurrentPosition) {
-        
+        lives -= 1
       }
     }, 415)
   }
@@ -356,7 +343,7 @@ function init() {
       if (timeRemaining < 0) {
         clearInterval(timerIDGame)
         timerScreen.innerHTML = 'GAME OVER!'
-
+        gameOver()
       } else {
         timerScreen.innerHTML = timeRemaining
       }
@@ -373,8 +360,13 @@ function init() {
 
   // * Start game 
   function startGame() {
-    createGrid()
-
+    gameTimer()
+    moveCar()
+    moveTruck()
+    moveBus()
+    moveLog()
+    moveLog2()
+    youWin()
   }
 
   // * Game Over function
@@ -391,20 +383,21 @@ function init() {
     removeLog(logCurrentPosition2)
     clearInterval(timerIDLog2)
     removeLog(logCurrentPosition3)
+    
   }
 
   // * EVENT LISTENERS
 
-  document.addEventListener('keyup', handleKeyUp)
+  document.addEventListener('keyup', moveBear)
 
   createGrid(bearStartPosition)
 
-  button.addEventListener('click', gameTimer)
-  button.addEventListener('click', moveCar)
-  button.addEventListener('click', moveLog)
-  button.addEventListener('click', moveLog2)
-  button.addEventListener('click', moveTruck)
-  button.addEventListener('click', moveBus)
+  button.addEventListener('click', startGame)
+  // button.addEventListener('click', moveCar)
+  // button.addEventListener('click', moveLog)
+  // button.addEventListener('click', moveLog2)
+  // button.addEventListener('click', moveTruck)
+  // button.addEventListener('click', moveBus)
 
   document.addEventListener('keyup', homeSafe)
 
