@@ -39,6 +39,8 @@ function init() {
   let timerIDCar = null
   let timerIDTruck = null
   let timerIDBus = null
+  let timerIDLog1 = null
+  let timerIDLog2 = null
 
   const totalScore = document.querySelector('#score-screen')
   let score = 0
@@ -293,7 +295,7 @@ function init() {
 
   // * Move log
   function moveLog() {
-    timerID = setInterval(() => {
+    timerIDLog1 = setInterval(() => {
       removeLog(logCurrentPosition)
       removeLog(logCurrentPosition2)
 
@@ -312,7 +314,7 @@ function init() {
 
   //* Second move log function
   function moveLog2() {
-    timerID = setInterval(() => {
+    timerIDLog2 = setInterval(() => {
       removeLog(logCurrentPosition3)
 
       if (logCurrentPosition3 === 26) {
@@ -384,6 +386,11 @@ function init() {
     removeTruck(truckCurrentPosition)
     clearInterval(timerIDBus)
     removeBus(busCurrentPosition)
+    clearInterval(timerIDLog1)
+    removeLog(logCurrentPosition)
+    removeLog(logCurrentPosition2)
+    clearInterval(timerIDLog2)
+    removeLog(logCurrentPosition3)
   }
 
   // * EVENT LISTENERS
