@@ -1,9 +1,11 @@
-.page-wrapper {
-  position: relative;
-  min-height: 100vh;
+body {
   background-image: url('../assets/adp8_4ucw_170602.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+}
+.page-wrapper {
+  position: relative;
+  min-height: 100vh;
   font-family: 'Permanent Marker', cursive;
   color: white;
 }
@@ -25,7 +27,7 @@ button {
   width: 190px;
   margin-top: 10px;
   font-family: 'Permanent Marker', cursive;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: transparent;
   border: white;
   outline: none;

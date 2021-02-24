@@ -295,8 +295,21 @@ function gameTimer() {
 
 
 // * EVENT LISTENERS
-  - click on play button 
+  // ! click on play button - start main timer, timer for obstacles, create grid, add bear
   button.addEventListener('click', gameTimer)
 
-  - handle keyUp events 
+  // ! handle key events - moving bear
   document.addEventListener('keyup', handleKeyUp)
+
+  // ! functions to be called
+  createGrid(bearStartPosition)
+  addCar(carCurrentPosition)
+  addLog(logCurrentPosition)
+  addTruck(truckCurrentPosition)
+  addBus(busCurrentPosition)
+  land()
+  home()
+  waterAndRoad()
+  detectCollision()
+  youWin()
+  gameOver()

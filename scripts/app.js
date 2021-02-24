@@ -6,12 +6,13 @@ function init() {
   const width = 9
   const cellCount = width * width
   const cells = []
-
+  console.log(cells)
   const bearClass = 'bear'
   const bearStartPosition = 76
   let bearCurrentPosition = 76
   const homeBearClass = 'homeBear'
-  
+
+
   const carClass = 'car'
   let carCurrentPosition = 63
 
@@ -99,17 +100,28 @@ function init() {
   }
 
   
+  // // * PLayer index
+  // function addPlayerIndex() {
+  //   cells[bearStartPosition].classList.add(bearClass)
+  // }
+
   // * Detect collision
 
   function detectCollision() {
     
     if (cells[bearCurrentPosition].classList.contains(carClass)) {
+      
+      console.log('OUCH')
+    }
+  }
+
+  function fallenIntoWater() {
+    if (bearCurrentPosition === 30 && cells[bearCurrentPosition].classList.contains('water')) {
       lives -= 1
       console.log(lives)
     }
-  
-
   }
+
 
   // * Home safe
   function homeSafe(event) {
@@ -123,8 +135,9 @@ function init() {
       score += 50
       totalScore.innerHTML = score
       allHome += 1
-      cells[bearCurrentPosition].classList.add(homeBearClass)
-      addBear(bearStartPosition)
+      cells[bearCurrentPosition].classList.replace(caveClass, homeBearClass)
+     
+      addPlayerIndex(bearStartPosition)
       
     } 
     
@@ -132,11 +145,11 @@ function init() {
 
 
   // * Once all 4 homes made to
-  function youWin() {
-    if (allHome === 0) {
-      console.log('YOU WIN')
-    } 
-  }
+  // function youWin() {
+  //   if (allHome = 4) {
+  //     console.log('YOU WIN')
+  //   } 
+  // }
 
   // * Caves for home 
   function home() {
@@ -370,10 +383,11 @@ function init() {
   land()
   home()
   waterAndRoad()
-  
+  addPlayerIndex()
+  fallenIntoWater()
   // document.addEventListener('keyup', detectCollision)
   detectCollision()
-  youWin()
+  // youWin()
   gameOver()
 
 }
