@@ -134,36 +134,29 @@ function init() {
     detectCollision()
     addBear(bearCurrentPosition)
   }
-
-
+  
+  // * Bear back to start position
+  function backToStart() {
+    removeBear(bearCurrentPosition)
+    bearCurrentPosition += (Math.abs(76 - bearCurrentPosition))
+    addBear(bearCurrentPosition)
+  }
+  
   // Detect collision
 
   function detectCollision() {
-    
-    if (cells[bearCurrentPosition].classList.contains(carClass)) {
+    if (cells[bearCurrentPosition].classList.contains(carClass) || cells[bearCurrentPosition].classList.contains(truckClass) || cells[bearCurrentPosition].classList.contains(busClass)) {
       lives -= 1
-    } else if (cells[bearCurrentPosition].classList.contains(truckClass)) {
-      lives -= 1
-    } else if (cells[bearCurrentPosition].classList.contains(busClass)) {
-      lives -= 1
+      if (lives === 0) {
+        gameOver()
+      } else {
+        backToStart()
+      }  
     }
-    
-    // setTimeout(() => {
-    //   cells[bearCurrentPosition].classList.add(beenHitClass)
-    //   cells[bearCurrentPosition].classList.remove(beenHitClass)
-    // }, 150)
-    
-    
-    if (lives === 0) {
-      gameOver()
-    } else {
-      
-    }
-      // cells[bearCurrentPosition].classlist.replace(beenHitClass)
-      // reset to start position
-    // gameOver()
   }
-
+    
+   
+  
   
   // * Fallen into water
   function fallenIntoWater() {
@@ -241,10 +234,10 @@ function logForRide() {
         if (lives === 0) {
           gameOver()
         } else {
-          // cells[carCurrentPosition].classList.add(beenHitClass)
-          // setTimeout(() => {
-          //   cells[carCurrentPosition].classList.remove(beenHitClass)
-          // }, 200)
+          cells[carCurrentPosition].classList.replace(carClass, beenHitClass)
+          setTimeout(() => {
+            cells[carCurrentPosition].classList.remove(beenHitClass)
+          }, 200)
           reset()
           backToStart()
         }
@@ -253,13 +246,7 @@ function logForRide() {
 
   }
 
-  // * Bear back to start position
-  function backToStart() {
-    removeBear(bearCurrentPosition)
-    bearCurrentPosition += (Math.abs(76 - bearCurrentPosition))
-    addBear(bearCurrentPosition)
-  }
-  
+
 
 
   // * Reset function - for when collision detected
@@ -267,7 +254,7 @@ function logForRide() {
     clearInterval(timerIDCar)
     setTimeout(() => {
       moveCar()
-    }, 250);   
+    }, 250) 
 
   }
 
@@ -298,10 +285,10 @@ function logForRide() {
         if (lives === 0) {
           gameOver()
         } else {
-          // cells[carCurrentPosition].classList.add(beenHitClass)
-          // setTimeout(() => {
-          //   cells[carCurrentPosition].classList.remove(beenHitClass)
-          // }, 200)
+          cells[truckCurrentPosition].classList.replace(truckClass, beenHitClass)
+          setTimeout(() => {
+            cells[truckCurrentPosition].classList.remove(beenHitClass)
+          }, 200)
           // reset()
           backToStart()
         }
@@ -336,10 +323,10 @@ function logForRide() {
         if (lives === 0) {
           gameOver()
         } else {
-          // cells[carCurrentPosition].classList.add(beenHitClass)
-          // setTimeout(() => {
-          //   cells[carCurrentPosition].classList.remove(beenHitClass)
-          // }, 200)
+          cells[busCurrentPosition].classList.replace(busClass, beenHitClass)
+          setTimeout(() => {
+            cells[busCurrentPosition].classList.remove(beenHitClass)
+          }, 200)
           // reset()
           backToStart()
         }
