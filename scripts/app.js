@@ -40,8 +40,7 @@ function init() {
   const totalScore = document.querySelector('#score-screen')
   let score = 0
   let lives = 3
-  const heart1 = document.getElementById('#heart1')
-  
+ 
 
   // * FUNCTIONS - initial set up and obstacles
 
@@ -242,26 +241,37 @@ function logForRide() {
       }
       addCar(carCurrentPosition)
       if (carCurrentPosition === bearCurrentPosition) {
-        // cells[carCurrentPosition].classList.add(beenHitClass)
-        // setTimeout(() => {
-        //   cells[carCurrentPosition].classList.remove(beenHitClass)
-        // }, 275)
-        // reset()
         lives -= 1
-        heart1.classList.add('hidden')
-        console.log('HEART1')
         if (lives === 0) {
           gameOver()
+        } else {
+          // cells[carCurrentPosition].classList.add(beenHitClass)
+          // setTimeout(() => {
+          //   cells[carCurrentPosition].classList.remove(beenHitClass)
+          // }, 200)
+          reset()
+          backToStart()
         }
       }
     }, 300)
 
   }
+
+  // * Bear back to start position
+  function backToStart() {
+    removeBear(bearCurrentPosition)
+    bearCurrentPosition += (Math.abs(76 - bearCurrentPosition))
+    addBear(bearCurrentPosition)
+  }
+  
+
+
   // * Reset function - for when collision detected
   function reset() {
     clearInterval(timerIDCar)
-    bearCurrentPosition = bearStartPosition
-   
+    setTimeout(() => {
+      moveCar()
+    }, 250);   
 
   }
 
