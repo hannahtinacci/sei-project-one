@@ -3,7 +3,9 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
+  font-family: 'Permanent Marker', cursive;
 }
+
 .page-wrapper {
   position: relative;
   min-height: 100vh;
@@ -24,27 +26,40 @@ nav {
 }
 
 button {
-  padding: 14px;
+  /* padding: 14px; */
   width: 190px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   font-family: 'Permanent Marker', cursive;
-  border-radius: 10px;
+  /* border-radius: 10px;
   background-color: transparent;
   border: white;
-  outline: none;
-  color: white;
+  outline: none; */
+  color: #ffcc00;
   font-size: 30px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  background: #f3f0f1;
+  position: relative;
+  background: #f3f0f1;
+  opacity: 0.6;
+  margin-bottom: 25px;
+  border-radius: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  outline: none;
 }
 
 button:hover {
-  color: #b33c00;
+  opacity: 0.5;
+  box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+  6px 6px 10px rgba(0, 0, 0, 0.2);
 }
 
 h1 {
   font-size: 32px;
 }
 
-h3 {
+h2, h3 {
   font-size: 26px;  
 }
 
@@ -72,20 +87,19 @@ h3 {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  /* border: 1px solid lightgrey; */
+  /* border: 3px double lightgrey; */
   height: 700px;
   width: 700px;
   justify-content: center;
   align-items: center;
   background-color: white;
-  color: black;
+  /* color: black; */
 }
 
 .game-info {
   display: flex;
   flex-direction: row;
-
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .lives {
@@ -104,27 +118,29 @@ h3 {
   
 } */
 
-.hidden {
-  display: none;
-}
-
 .grid div {
   height: 11%;
   width: 11%;
   border: none;
 }
 .grid div.grass {
-  /* background-image: url('../assets/grass.png'); 
+  background-image: url('../assets/grass.png'); 
   background-size: contain;
+  
   background-position: bottom;
+  left:0;
   bottom: 0;
-  background-repeat: no-repeat; */
+  background-repeat: no-repeat;
   /* background-image: linear-gradient(white, green) ; */
+}
+.grid div.road {
+  background-color: #bfbfbf;
+  color: #bfbfbf;
 }
 
 .grid div.bear {
   background-image: url('../assets/bear.png');
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -161,19 +177,19 @@ h3 {
   background-image: url('../assets/bus.png');
   background-size: contain;
 }
-
+.grid div.water {
+  background-color:#b3e6ff;
+  /* background: radial-gradient(#6dd5ed, #b3e6ff ) */
+  color: #b3e6ff;
+}
 .grid div.log {
   background-image: url('../assets/log.png');
   background-size: contain;
 }
 
-.grid div.water {
-  background-color:#b3e6ff;
-}
 
-.grid div.road {
-  background-color: #bfbfbf;
-}
+
+
 
 footer {
   position: absolute;

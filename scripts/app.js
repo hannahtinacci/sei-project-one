@@ -28,6 +28,7 @@ function init() {
   const beenHitClass = 'ouch'
 
   // Document selectors and timers
+  // const introScreen = document.querySelector('.intro-screen')
   const timerScreen = document.querySelector('.time-screen').querySelector('h3')
   const button = document.querySelector('button')
   let timeRemaining = 30
@@ -37,9 +38,10 @@ function init() {
   let timerIDBus = null
   let timerIDLog1 = null
   let timerIDLog2 = null
+  let timerIDLog3 = null
   const totalScore = document.querySelector('#score-screen')
   let score = 0
-  const livesLeft = document.querySelector('#lives-left')
+  const livesLeft = document.querySelector('.lives').querySelector('h3')
   let lives = 3
  
 
@@ -149,34 +151,19 @@ function init() {
     if (cells[bearCurrentPosition].classList.contains(carClass) || cells[bearCurrentPosition].classList.contains(truckClass) || cells[bearCurrentPosition].classList.contains(busClass)) {
       lives -= 1
       livesLeft.innerHTML = lives
-      livesLeft.classList.toggle('animate__flash')
+      livesLeft.classList.add('animate__flash')
       if (lives === 0) {
         gameOver()
       } else {
+        cells[bearCurrentPosition].classList.replace(bearClass, beenHitClass)
+        setTimeout(() => {
+          cells[bearCurrentPosition].classList.remove(beenHitClass)
+        }, 200)
         backToStart()
       }  
     }
   }
   
-  
-  // * Fallen into water
-  function fallenIntoWater() {
-    if (bearCurrentPosition === 30 && cells[bearCurrentPosition].classList.contains('water')) {
-      lives -= 1
-    
-    }
-  }
-
-  // // ! check if log is present so bear can hitch a ride - how to handle going off screen and losing a life from here?
-  // function logForRide() {
-  //   if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 9 && bearCurrentPosition < 18) {
-  //     bearCurrentPosition--
-  //   } else if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 18 && bearCurrentPosition < 27) {
-  //     bearCurrentPosition++
-  //   } else if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 27 && bearCurrentPosition < 36) {
-  //     bearCurrentPosition--
-  //   }
-  // }
 
   // Home safe
   function homeSafe(event) {
@@ -331,24 +318,34 @@ function init() {
   function moveLog() {
     timerIDLog1 = setInterval(() => {
       removeLog(logCurrentPosition)
-      removeLog(logCurrentPosition2)
 
-      if (logCurrentPosition === 27 && logCurrentPosition2 === 9) {
+      if (logCurrentPosition === 27 ) {
         logCurrentPosition += 8
-        logCurrentPosition2 += 8
         // clearInterval(timerID)
       } else {
         logCurrentPosition--
-        logCurrentPosition2--
       }
       addLog(logCurrentPosition)
-      addLog(logCurrentPosition2)
+
+      if (logCurrentPosition  === bearCurrentPosition) {
+        lives -= 1
+        livesLeft.innerHTML = lives
+        if (lives === 0) {
+          gameOver()
+        } else {
+          cells[logCurrentPosition].classList.replace(logClass, beenHitClass)
+          setTimeout(() => {
+            cells[logCurrentPosition].classList.remove(beenHitClass)
+          }, 200)
+          backToStart()
+        }
+      }
     }, 500)
   }
 
   //* Second move log function
-  function moveLog2() {
-    timerIDLog2 = setInterval(() => {
+  function moveLog3() {
+    timerIDLog3 = setInterval(() => {
       removeLog(logCurrentPosition3)
 
       if (logCurrentPosition3 === 26) {
@@ -358,11 +355,50 @@ function init() {
         logCurrentPosition3++
       }
       addLog(logCurrentPosition3)
-  
+      if (logCurrentPosition3 === bearCurrentPosition) {
+        lives -= 1
+        livesLeft.innerHTML = lives
+        if (lives === 0) {
+          gameOver()
+        } else {
+          cells[logCurrentPosition3].classList.replace(logClass, beenHitClass)
+          setTimeout(() => {
+            cells[logCurrentPosition3].classList.remove(beenHitClass)
+          }, 200)
+          backToStart()
+        }
+      }
     }, 350)
   }
 
-  
+  // * Third move log function
+  function moveLog2() {
+    timerIDLog2 = setInterval(() => {
+      removeLog(logCurrentPosition2)
+
+      if (logCurrentPosition2 === 9) {
+        logCurrentPosition2 += 8
+        // clearInterval(timerID)
+      } else {
+        logCurrentPosition2--
+      }
+      addLog(logCurrentPosition2)
+      if (logCurrentPosition2 === bearCurrentPosition) {
+        lives -= 1
+        livesLeft.innerHTML = lives
+        if (lives === 0) {
+          gameOver()
+        } else {
+          cells[logCurrentPosition2].classList.replace(logClass, beenHitClass)
+          setTimeout(() => {
+            cells[logCurrentPosition2].classList.remove(beenHitClass)
+          }, 200)
+          backToStart()
+        }
+      }
+    }, 350)
+  }
+
 
 
 
@@ -399,6 +435,7 @@ function init() {
     moveBus()
     moveLog()
     moveLog2()
+    moveLog3()
     youWin()
   }
 
@@ -413,10 +450,15 @@ function init() {
     removeBus(busCurrentPosition)
     clearInterval(timerIDLog1)
     removeLog(logCurrentPosition)
+    clearInterval(timerIDLog3)
     removeLog(logCurrentPosition2)
     clearInterval(timerIDLog2)
     removeLog(logCurrentPosition3)
     
+  }
+
+  function introScreen() {
+    document.querySelector('.intro-screen').style.display = 'block'
   }
 
   // * EVENT LISTENERS
@@ -432,7 +474,6 @@ function init() {
   land()
   home()
   waterAndRoad()
-  // fallenIntoWater()
 
 }
 
