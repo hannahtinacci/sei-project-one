@@ -192,17 +192,13 @@ function logForRide() {
       cells[bearCurrentPosition].classList.replace(caveClass, homeBearClass)
     } 
     if (bearCurrentPosition === 1){
-      bearCurrentPosition += 75
-      addBear(bearCurrentPosition)
+      backToStart()
     } else if (bearCurrentPosition === 3) {
-      bearCurrentPosition += 73
-      addBear(bearCurrentPosition)
+      backToStart()
     } else if (bearCurrentPosition === 5) {
-      bearCurrentPosition += 71
-      addBear(bearCurrentPosition)
+      backToStart()
     } else if (bearCurrentPosition === 7) {
-      bearCurrentPosition += 69
-      addBear(bearCurrentPosition)
+      backToStart()
     }
     youWin()
   }
@@ -299,12 +295,18 @@ function logForRide() {
       addTruck(truckCurrentPosition)
       if (truckCurrentPosition === bearCurrentPosition) {
         lives -= 1
+        if (lives === 0) {
+          gameOver()
+        } else {
+          // cells[carCurrentPosition].classList.add(beenHitClass)
+          // setTimeout(() => {
+          //   cells[carCurrentPosition].classList.remove(beenHitClass)
+          // }, 200)
+          // reset()
+          backToStart()
+        }
       }
-      if (lives === 0) {
-        gameOver()
-      }
-      
-    }, 490)
+    }, 400)
   }
 
   // * Add bus
@@ -331,9 +333,16 @@ function logForRide() {
       addBus(busCurrentPosition)
       if (busCurrentPosition === bearCurrentPosition) {
         lives -= 1
-      }
-      if (lives === 0) {
-        gameOver()
+        if (lives === 0) {
+          gameOver()
+        } else {
+          // cells[carCurrentPosition].classList.add(beenHitClass)
+          // setTimeout(() => {
+          //   cells[carCurrentPosition].classList.remove(beenHitClass)
+          // }, 200)
+          // reset()
+          backToStart()
+        }
       }
     }, 415)
   }
