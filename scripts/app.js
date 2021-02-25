@@ -151,7 +151,7 @@ function init() {
     if (cells[bearCurrentPosition].classList.contains(carClass) || cells[bearCurrentPosition].classList.contains(truckClass) || cells[bearCurrentPosition].classList.contains(busClass)) {
       lives -= 1
       livesLeft.innerHTML = lives
-      livesLeft.classList.add('animate__flash')
+      // livesLeft.classList.add('animate__flash')
       if (lives === 0) {
         gameOver()
       } else {
@@ -412,6 +412,7 @@ function init() {
       if (timeRemaining < 0) {
         clearInterval(timerIDGame)
         timerScreen.innerHTML = 'GAME OVER!'
+        // timerScreen.classList.replace('animate_flash')
         gameOver()
       } else {
         timerScreen.innerHTML = timeRemaining
@@ -454,7 +455,7 @@ function init() {
     removeLog(logCurrentPosition2)
     clearInterval(timerIDLog2)
     removeLog(logCurrentPosition3)
-    
+    backToStart()
   }
 
   function introScreen() {
