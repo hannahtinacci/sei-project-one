@@ -39,6 +39,7 @@ function init() {
   let timerIDLog2 = null
   const totalScore = document.querySelector('#score-screen')
   let score = 0
+  const livesLeft = document.querySelector('#lives-left')
   let lives = 3
  
 
@@ -147,6 +148,8 @@ function init() {
   function detectCollision() {
     if (cells[bearCurrentPosition].classList.contains(carClass) || cells[bearCurrentPosition].classList.contains(truckClass) || cells[bearCurrentPosition].classList.contains(busClass)) {
       lives -= 1
+      livesLeft.innerHTML = lives
+      livesLeft.classList.toggle('animate__flash')
       if (lives === 0) {
         gameOver()
       } else {
@@ -154,8 +157,6 @@ function init() {
       }  
     }
   }
-    
-   
   
   
   // * Fallen into water
@@ -166,16 +167,16 @@ function init() {
     }
   }
 
-  // ! check if log is present so bear can hitch a ride - how to handle going off screen and losing a life from here?
-function logForRide() {
-  if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 9 && bearCurrentPosition < 18) {
-    bearCurrentPosition--
-  } else if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 18 && bearCurrentPosition < 27) {
-    bearCurrentPosition++
-  } else if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 27 && bearCurrentPosition < 36) {
-    bearCurrentPosition--
-  }
-}
+  // // ! check if log is present so bear can hitch a ride - how to handle going off screen and losing a life from here?
+  // function logForRide() {
+  //   if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 9 && bearCurrentPosition < 18) {
+  //     bearCurrentPosition--
+  //   } else if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 18 && bearCurrentPosition < 27) {
+  //     bearCurrentPosition++
+  //   } else if (cells[bearCurrentPosition].classList.contains(logClass) && bearCurrentPosition >= 27 && bearCurrentPosition < 36) {
+  //     bearCurrentPosition--
+  //   }
+  // }
 
   // Home safe
   function homeSafe(event) {
@@ -184,13 +185,7 @@ function logForRide() {
       totalScore.innerHTML = score
       cells[bearCurrentPosition].classList.replace(caveClass, homeBearClass)
     } 
-    if (bearCurrentPosition === 1){
-      backToStart()
-    } else if (bearCurrentPosition === 3) {
-      backToStart()
-    } else if (bearCurrentPosition === 5) {
-      backToStart()
-    } else if (bearCurrentPosition === 7) {
+    if (bearCurrentPosition === 1 || bearCurrentPosition === 3 || bearCurrentPosition === 5 || bearCurrentPosition === 7){
       backToStart()
     }
     youWin()
@@ -231,6 +226,7 @@ function logForRide() {
       addCar(carCurrentPosition)
       if (carCurrentPosition === bearCurrentPosition) {
         lives -= 1
+        livesLeft.innerHTML = lives
         if (lives === 0) {
           gameOver()
         } else {
@@ -238,23 +234,10 @@ function logForRide() {
           setTimeout(() => {
             cells[carCurrentPosition].classList.remove(beenHitClass)
           }, 200)
-          reset()
           backToStart()
         }
       }
     }, 300)
-
-  }
-
-
-
-
-  // * Reset function - for when collision detected
-  function reset() {
-    clearInterval(timerIDCar)
-    setTimeout(() => {
-      moveCar()
-    }, 250) 
 
   }
 
@@ -282,6 +265,7 @@ function logForRide() {
       addTruck(truckCurrentPosition)
       if (truckCurrentPosition === bearCurrentPosition) {
         lives -= 1
+        livesLeft.innerHTML = lives
         if (lives === 0) {
           gameOver()
         } else {
@@ -289,11 +273,10 @@ function logForRide() {
           setTimeout(() => {
             cells[truckCurrentPosition].classList.remove(beenHitClass)
           }, 200)
-          // reset()
           backToStart()
         }
       }
-    }, 400)
+    }, 250)
   }
 
   // * Add bus
@@ -320,6 +303,7 @@ function logForRide() {
       addBus(busCurrentPosition)
       if (busCurrentPosition === bearCurrentPosition) {
         lives -= 1
+        livesLeft.innerHTML = lives
         if (lives === 0) {
           gameOver()
         } else {
@@ -327,11 +311,10 @@ function logForRide() {
           setTimeout(() => {
             cells[busCurrentPosition].classList.remove(beenHitClass)
           }, 200)
-          // reset()
           backToStart()
         }
       }
-    }, 415)
+    }, 310)
   }
 
   // * Add log to start cell

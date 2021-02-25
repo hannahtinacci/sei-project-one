@@ -2,6 +2,7 @@ body {
   background-image: url('../assets/adp8_4ucw_170602.jpg');
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100vh;
 }
 .page-wrapper {
   position: relative;
@@ -44,15 +45,8 @@ h1 {
 }
 
 h3 {
-  font-size: 22px;  
+  font-size: 26px;  
 }
-
-.score {
-  margin-top: 10px;
-  text-align: center;
-}
-
-
 
 .timer {
   text-align: center;
@@ -69,11 +63,6 @@ h3 {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}
-
-.score p {
-  width: 150px;
-  height: 50px;
 }
 
 .grid-wrapper {
@@ -104,12 +93,16 @@ h3 {
   padding-right: 120px;
 }
 
-.lives div {
+.score {
+  text-align: center;
+}
+
+/* .lives div {
   width: 150px;
   height: 50px;
   padding-top: 7px;
   
-}
+} */
 
 .hidden {
   display: none;
@@ -192,3 +185,7 @@ footer p {
   text-align: center;
   padding-bottom: 20px;
 }
+
+/* <i class="fas fa-heart" id="heart1"></i>
+<i class="fas fa-heart" id="heart2"></i>
+<i class="fas fa-heart" id="heart3"></i> */
