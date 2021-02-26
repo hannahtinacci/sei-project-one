@@ -183,8 +183,11 @@ function init() {
   function youWin() {
     if (cells[1].classList.contains(homeBearClass) && cells[3].classList.contains(homeBearClass) && cells[5].classList.contains(homeBearClass) && cells[7].classList.contains(homeBearClass) && timeRemaining > 0) {
       gameOver()
-      alert('Good job! All bears made it home safely')
-      location.reload()
+      // alert('Good job! All bears made it home safely')
+      setTimeout(() => {
+        location.reload()
+      }, 200);
+      
     } 
   }
 
@@ -411,7 +414,10 @@ function init() {
       if (timeRemaining < 0) {
         clearInterval(timerIDGame)
         timerScreen.innerHTML = 'GAME OVER!'
-        // timerScreen.classList.replace('animate_flash')
+        timerScreen.style.fontSize = '35px'  
+        
+        
+        timerScreen.classList.add('animate__flash')
         gameOver()
       } else {
         timerScreen.innerHTML = timeRemaining
@@ -455,6 +461,7 @@ function init() {
     clearInterval(timerIDLog2)
     removeLog(logCurrentPosition3)
     location.reload()
+    
   }
 
   

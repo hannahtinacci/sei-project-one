@@ -62,15 +62,16 @@ button {
   background-color: transparent;
   border: white;
   outline: none; */
-  color: #ffcc00;
+  color:red;
   font-size: 30px;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   background: #f3f0f1;
   position: relative;
   background: #f3f0f1;
-  opacity: 0.4;
+  opacity: 0.5;
   margin-bottom: 25px;
-  border-radius: 32px;
+  border: 5px double black;
+  border-radius: 20px;
   text-align: center;
   cursor: pointer;
   transition: all 0.1s ease-in-out;
