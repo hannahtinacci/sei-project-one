@@ -8,14 +8,13 @@ body {
 
 .page-wrapper {
   position: relative;
-  /* height: 100vh; */
-  font-family: 'Permanent Marker', cursive;
+  height: 100vh;
   color: white;
 }
 
 .intro-screen {
-  height: 100%;
-  width: 0;
+  height: 100vh;
+  width: 100%;
   position: fixed; 
   z-index: 1; 
   left: 0;
@@ -28,18 +27,35 @@ body {
 
 .intro-content {
   position: relative;
-  top: 25%; 
-  width: 100%;
+  /* top: 25%;  */
+  /* width: 100%; */
   text-align: center; 
-  margin-top: 30px;
+  margin-top: 20px;
+  padding: 200px
 }
 
-button.closeScreen {
+.intro-content h1, .intro-content h2, .intro-content h3 {
+  color: white;
+  padding: 50px;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }  
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+}
+
+/* button.closeScreen {
   position: absolute;
   top: 20px;
   right: 45px;
   font-size: 60px;
-}
+} */
 
 header {
   text-align: center;
@@ -54,20 +70,14 @@ nav {
 }
 
 button {
-  /* padding: 14px; */
+  padding: 14px;
   width: 170px;
-  /* margin-top: 10px; */
   font-family: 'Permanent Marker', cursive;
-  /* border-radius: 10px;
-  background-color: transparent;
-  border: white;
-  outline: none; */
   color:red;
   font-size: 30px;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   background: #f3f0f1;
   position: relative;
-  background: #f3f0f1;
   opacity: 0.5;
   margin-bottom: 25px;
   border: 5px double black;
@@ -117,13 +127,12 @@ h2, h3 {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  /* border: 3px double lightgrey; */
+  border: 3px double lightgrey;
   height: 700px;
   width: 700px;
   justify-content: center;
   align-items: center;
   background-color: white;
-  /* color: black; */
 }
 
 .game-info {
@@ -140,13 +149,6 @@ h2, h3 {
 .score {
   text-align: center;
 }
-
-/* .lives div {
-  width: 150px;
-  height: 50px;
-  padding-top: 7px;
-  
-} */
 
 .grid div {
   height: 11%;
@@ -192,7 +194,6 @@ h2, h3 {
   
 }
 
-
 .grid div.car {
   background-image: url('../assets/car.png');
   background-size: contain;
@@ -217,8 +218,15 @@ h2, h3 {
   background-size: contain;
 }
 
-.gameover-screen {
-  display: none;
+.gameover-lose {
+  border: 2px solid black;
+  height: 70px;
+  /* position: absolute;
+  top: 50%;
+  left: 50%; */
+  width: 50%;
+  top: 50%;
+
 }
 
 footer {

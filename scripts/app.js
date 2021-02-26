@@ -43,7 +43,9 @@ function init() {
   let score = 0
   const livesLeft = document.querySelector('.lives').querySelector('h3')
   let lives = 3
- 
+  const introScreen = document.querySelector('.intro-screen')
+  // const closeIntroScreen = document.querySelector('.closeScreen')
+  
 
   // * FUNCTIONS - initial set up and obstacles
 
@@ -461,11 +463,25 @@ function init() {
     
   }
 
+  function refresh() {
+    location.reload()
+    closeOverlay()
+  }
+
+  // function openOverlay() {
+  //   introScreen.style.display = 'block'
+  //   console.log(introScreen)
+  // }
   
+  function closeOverlay(){
+    introScreen.style.display = 'none'
+  }
 
   // * EVENT LISTENERS
 
   document.addEventListener('keyup', moveBear)
+
+  
 
   createGrid(bearStartPosition)
 
@@ -476,6 +492,8 @@ function init() {
   land()
   home()
   waterAndRoad()
+  // document.addEventListener('load', openOverlay)
+  document.addEventListener('click', closeOverlay)
   
 
 }
