@@ -202,7 +202,6 @@ function init() {
     livesLeft.innerHTML = 3
     timerScreen.innerHTML = 30
     timeRemaining = 30
-    
   }
 
 
@@ -442,7 +441,7 @@ function init() {
   // * Start game 
   function startGame() {
     gameTimer()
-    audio.src = './assets/AMBForst_Forest (ID 0100)_BSB'
+    audio.src = './assets/AMBForst_Forest (ID 0100)_BSB.wav'
     audio.play()
     moveCar()
     moveTruck()
@@ -469,7 +468,7 @@ function init() {
     clearInterval(timerIDLog2)
     removeLog(logCurrentPosition3)
     refresh()
-    
+    audio.pause()
   }
 
   function closeOverlay(){
