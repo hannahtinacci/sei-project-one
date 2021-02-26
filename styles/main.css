@@ -44,7 +44,7 @@ button.closeScreen {
 header {
   text-align: center;
   padding-top: 20px;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
 }
 
 nav {
@@ -85,11 +85,11 @@ button:hover {
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 40px;
 }
 
 h2, h3 {
-  font-size: 26px;  
+  font-size: 28px;  
 }
 
 .timer {

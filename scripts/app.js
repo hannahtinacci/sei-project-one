@@ -303,7 +303,7 @@ function init() {
           backToStart()
         }
       }
-    }, 310)
+    }, 290)
   }
 
   // * Add log to start cell
@@ -342,38 +342,10 @@ function init() {
           backToStart()
         }
       }
-    }, 500)
+    }, 315)
   }
 
-  //* Second move log function
-  function moveLog3() {
-    timerIDLog3 = setInterval(() => {
-      removeLog(logCurrentPosition3)
-
-      if (logCurrentPosition3 === 26) {
-        logCurrentPosition3 -= 8
-        // clearInterval(timerID)
-      } else {
-        logCurrentPosition3++
-      }
-      addLog(logCurrentPosition3)
-      if (logCurrentPosition3 === bearCurrentPosition) {
-        lives -= 1
-        livesLeft.innerHTML = lives
-        if (lives === 0) {
-          gameOver()
-        } else {
-          cells[logCurrentPosition3].classList.replace(logClass, beenHitClass)
-          setTimeout(() => {
-            cells[logCurrentPosition3].classList.remove(beenHitClass)
-          }, 200)
-          backToStart()
-        }
-      }
-    }, 350)
-  }
-
-  // * Third move log function
+  // * Second move log function
   function moveLog2() {
     timerIDLog2 = setInterval(() => {
       removeLog(logCurrentPosition2)
@@ -398,10 +370,35 @@ function init() {
           backToStart()
         }
       }
-    }, 350)
+    }, 275)
   }
 
+  //* Third move log function
+  function moveLog3() {
+    timerIDLog3 = setInterval(() => {
+      removeLog(logCurrentPosition3)
 
+      if (logCurrentPosition3 === 26) {
+        logCurrentPosition3 -= 8
+      } else {
+        logCurrentPosition3++
+      }
+      addLog(logCurrentPosition3)
+      if (logCurrentPosition3 === bearCurrentPosition) {
+        lives -= 1
+        livesLeft.innerHTML = lives
+        if (lives === 0) {
+          gameOver()
+        } else {
+          cells[logCurrentPosition3].classList.replace(logClass, beenHitClass)
+          setTimeout(() => {
+            cells[logCurrentPosition3].classList.remove(beenHitClass)
+          }, 200)
+          backToStart()
+        }
+      }
+    }, 295)
+  }
 
 
 
