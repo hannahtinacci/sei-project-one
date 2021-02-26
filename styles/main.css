@@ -8,9 +8,37 @@ body {
 
 .page-wrapper {
   position: relative;
-  min-height: 100vh;
+  /* height: 100vh; */
   font-family: 'Permanent Marker', cursive;
   color: white;
+}
+
+.intro-screen {
+  height: 100%;
+  width: 0;
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0, 0.9); 
+  overflow-x: hidden; 
+  transition: 0.5s;
+}
+
+.intro-content {
+  position: relative;
+  top: 25%; 
+  width: 100%;
+  text-align: center; 
+  margin-top: 30px;
+}
+
+button.closeScreen {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
 }
 
 header {
@@ -27,7 +55,7 @@ nav {
 
 button {
   /* padding: 14px; */
-  width: 190px;
+  width: 170px;
   /* margin-top: 10px; */
   font-family: 'Permanent Marker', cursive;
   /* border-radius: 10px;
@@ -40,7 +68,7 @@ button {
   background: #f3f0f1;
   position: relative;
   background: #f3f0f1;
-  opacity: 0.6;
+  opacity: 0.4;
   margin-bottom: 25px;
   border-radius: 32px;
   text-align: center;
@@ -65,10 +93,11 @@ h2, h3 {
 
 .timer {
   text-align: center;
+  ;
 }
 
 .time-screen {
-  width: 10px;
+  width: 150px;
   height: 50px;
 
 }
@@ -123,6 +152,7 @@ h2, h3 {
   width: 11%;
   border: none;
 }
+
 .grid div.grass {
   background-image: url('../assets/grass.png'); 
   background-size: contain;
@@ -131,8 +161,8 @@ h2, h3 {
   left:0;
   bottom: 0;
   background-repeat: no-repeat;
-  /* background-image: linear-gradient(white, green) ; */
 }
+
 .grid div.road {
   background-color: #bfbfbf;
   color: #bfbfbf;
@@ -179,7 +209,6 @@ h2, h3 {
 }
 .grid div.water {
   background-color:#b3e6ff;
-  /* background: radial-gradient(#6dd5ed, #b3e6ff ) */
   color: #b3e6ff;
 }
 .grid div.log {
@@ -187,9 +216,9 @@ h2, h3 {
   background-size: contain;
 }
 
-
-
-
+.gameover-screen {
+  display: none;
+}
 
 footer {
   position: absolute;
@@ -202,6 +231,3 @@ footer p {
   padding-bottom: 20px;
 }
 
-/* <i class="fas fa-heart" id="heart1"></i>
-<i class="fas fa-heart" id="heart2"></i>
-<i class="fas fa-heart" id="heart3"></i> */

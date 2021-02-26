@@ -26,9 +26,9 @@ function init() {
   const caveClass = 'cave'
   const landClass = 'grass'
   const beenHitClass = 'ouch'
+  const audio = document.querySelector('.audio')
 
   // Document selectors and timers
-  // const introScreen = document.querySelector('.intro-screen')
   const timerScreen = document.querySelector('.time-screen').querySelector('h3')
   const button = document.querySelector('button')
   let timeRemaining = 30
@@ -168,7 +168,7 @@ function init() {
   // Home safe
   function homeSafe(event) {
     if (bearCurrentPosition === 1 || bearCurrentPosition === 3 || bearCurrentPosition === 5 || bearCurrentPosition === 7) {
-      score += 50
+      score += 150
       totalScore.innerHTML = score
       cells[bearCurrentPosition].classList.replace(caveClass, homeBearClass)
     } 
@@ -183,7 +183,8 @@ function init() {
   function youWin() {
     if (cells[1].classList.contains(homeBearClass) && cells[3].classList.contains(homeBearClass) && cells[5].classList.contains(homeBearClass) && cells[7].classList.contains(homeBearClass) && timeRemaining > 0) {
       gameOver()
-
+      alert('Good job! All bears made it home safely')
+      location.reload()
     } 
   }
 
@@ -245,7 +246,6 @@ function init() {
 
       if (truckCurrentPosition === 62) {
         truckCurrentPosition -= 8
-        // clearInterval(timerID)
       } else {
         truckCurrentPosition++
       }
@@ -283,7 +283,6 @@ function init() {
 
       if (busCurrentPosition === 45) {
         busCurrentPosition += 8
-        // clearInterval(timerID)
       } else {
         busCurrentPosition--
       }
@@ -419,9 +418,7 @@ function init() {
       }
     }, 1000)
   }
-  
-
-
+ 
   // * Function to select road obstacle function at random
   // const roadFunctions = [moveCar, moveTruck, moveBus]
   // randomFunction = roadFunctions[Math.floor(Math.random() * (roadFunctions.length))]
@@ -431,6 +428,8 @@ function init() {
   // * Start game 
   function startGame() {
     gameTimer()
+    // audio.src = './assets'
+    // audio.play()
     moveCar()
     moveTruck()
     moveBus()
@@ -455,12 +454,10 @@ function init() {
     removeLog(logCurrentPosition2)
     clearInterval(timerIDLog2)
     removeLog(logCurrentPosition3)
-    backToStart()
+    location.reload()
   }
 
-  function introScreen() {
-    document.querySelector('.intro-screen').style.display = 'block'
-  }
+  
 
   // * EVENT LISTENERS
 
@@ -475,6 +472,7 @@ function init() {
   land()
   home()
   waterAndRoad()
+  
 
 }
 

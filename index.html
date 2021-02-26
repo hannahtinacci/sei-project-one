@@ -14,13 +14,16 @@
   <title>PROJECT ONE - FROGGER</title>
 </head>
 <body>
-  <div class="intro-screen">
-    <div class="fade-in">
+  <!-- <div class="intro-screen" onload="openOverlay()">
+    <button href="javascript:void(0)" class="closeScreen" onclick="closeOverlay()">&times;</button>
+    <div class="intro-content">
       <h1>FROGGER... re-imagined</h1>
+      <h2>RULES</h2>
     </div>
-  </div>
+  </div> -->
   
   <div class="page-wrapper">
+    <audio class = "audio"></audio>
     <header>
       <h1>FROGGER... re-imagined</h1>
       <nav>
@@ -40,6 +43,9 @@
       <div class="play-area-wrapper">
         <div class="grid-wrapper">
           <div class="grid"></div>
+          <div class="gameover-screen">
+            <div>Whoops! You didn't make it this time. Better luck next time!</div>
+          </div>
         </div>
 
         <div class="game-info">
