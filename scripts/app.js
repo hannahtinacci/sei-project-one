@@ -44,7 +44,7 @@ function init() {
   const livesLeft = document.querySelector('.lives').querySelector('h3')
   let lives = 3
   const introScreen = document.querySelector('.intro-screen')
-  // const closeIntroScreen = document.querySelector('.closeScreen')
+ 
   
 
   // * FUNCTIONS - initial set up and obstacles
@@ -187,12 +187,23 @@ function init() {
       gameOver()
       // alert('Good job! All bears made it home safely')
       setTimeout(() => {
-        location.reload()
-      }, 200);
+        refresh()
+      }, 200)
       
     } 
   }
 
+  function refresh() {
+    cells[1].classList.replace(homeBearClass, caveClass) 
+    cells[3].classList.replace(homeBearClass, caveClass) 
+    cells[5].classList.replace(homeBearClass, caveClass) 
+    cells[7].classList.replace(homeBearClass, caveClass) 
+    backToStart()
+    livesLeft.innerHTML = 3
+    timerScreen.innerHTML = 30
+    timeRemaining = 30
+    
+  }
 
 
 
@@ -325,7 +336,6 @@ function init() {
 
       if (logCurrentPosition === 27 ) {
         logCurrentPosition += 8
-        // clearInterval(timerID)
       } else {
         logCurrentPosition--
       }
@@ -354,7 +364,6 @@ function init() {
 
       if (logCurrentPosition2 === 9) {
         logCurrentPosition2 += 8
-        // clearInterval(timerID)
       } else {
         logCurrentPosition2--
       }
@@ -433,8 +442,8 @@ function init() {
   // * Start game 
   function startGame() {
     gameTimer()
-    // audio.src = './assets'
-    // audio.play()
+    audio.src = './assets/AMBForst_Forest (ID 0100)_BSB'
+    audio.play()
     moveCar()
     moveTruck()
     moveBus()
@@ -459,20 +468,10 @@ function init() {
     removeLog(logCurrentPosition2)
     clearInterval(timerIDLog2)
     removeLog(logCurrentPosition3)
-    location.reload()
+    refresh()
     
   }
 
-  function refresh() {
-    location.reload()
-    closeOverlay()
-  }
-
-  // function openOverlay() {
-  //   introScreen.style.display = 'block'
-  //   console.log(introScreen)
-  // }
-  
   function closeOverlay(){
     introScreen.style.display = 'none'
   }
@@ -492,7 +491,7 @@ function init() {
   land()
   home()
   waterAndRoad()
-  // document.addEventListener('load', openOverlay)
+
   document.addEventListener('click', closeOverlay)
   
 

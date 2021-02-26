@@ -50,13 +50,6 @@ body {
   animation: fadeIn 1s ease-in forwards;
 }
 
-/* button.closeScreen {
-  position: absolute;
-  top: 20px;
-  right: 45px;
-  font-size: 60px;
-} */
-
 header {
   text-align: center;
   padding-top: 20px;
@@ -100,6 +93,19 @@ h1 {
 
 h2, h3 {
   font-size: 28px;  
+}
+
+a {
+  font-size: 28px;  
+  padding-bottom: 25px;
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  opacity: 0.5;
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .timer {
