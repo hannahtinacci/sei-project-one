@@ -27,6 +27,7 @@ function init() {
   const landClass = 'grass'
   const beenHitClass = 'ouch'
   const audio = document.querySelector('.audio')
+  const carAudio = document.querySelector('.car-audio')
 
   // Document selectors and timers
   const timerScreen = document.querySelector('.time-screen').querySelector('h3')
@@ -39,6 +40,7 @@ function init() {
   let timerIDLog1 = null
   let timerIDLog2 = null
   let timerIDLog3 = null
+
   const totalScore = document.querySelector('#score-screen')
   let score = 0
   const livesLeft = document.querySelector('.lives').querySelector('h3')
@@ -185,7 +187,6 @@ function init() {
   function youWin() {
     if (cells[1].classList.contains(homeBearClass) && cells[3].classList.contains(homeBearClass) && cells[5].classList.contains(homeBearClass) && cells[7].classList.contains(homeBearClass) && timeRemaining > 0) {
       gameOver()
-      // alert('Good job! All bears made it home safely')
       setTimeout(() => {
         refresh()
       }, 200)
@@ -202,6 +203,8 @@ function init() {
     livesLeft.innerHTML = 3
     timerScreen.innerHTML = 30
     timeRemaining = 30
+    score = 0
+    totalScore.innerHTML = 0
   }
 
 
@@ -353,7 +356,7 @@ function init() {
           backToStart()
         }
       }
-    }, 315)
+    }, 210)
   }
 
   // * Second move log function
@@ -407,7 +410,7 @@ function init() {
           backToStart()
         }
       }
-    }, 295)
+    }, 250)
   }
 
 
@@ -431,18 +434,14 @@ function init() {
       }
     }, 1000)
   }
- 
-  // * Function to select road obstacle function at random
-  // const roadFunctions = [moveCar, moveTruck, moveBus]
-  // randomFunction = roadFunctions[Math.floor(Math.random() * (roadFunctions.length))]
 
-  // console.log(randomFunction)
 
   // * Start game 
   function startGame() {
     gameTimer()
-    audio.src = './assets/AMBForst_Forest (ID 0100)_BSB.wav'
+    audio.src = '../assets/AMBForst_Forest (ID 0100)_BSB.wav'
     audio.play()
+    // carAudioTimer()
     moveCar()
     moveTruck()
     moveBus()
