@@ -43,7 +43,7 @@ CSS3
 JavaScript (ES6)
 Git/GitHub
 
-## <a name="development"></a>Development
+## <a name="development"></a>Development 💻
 
 ### Planning
 Initially, I had planned to go for a different game but changed my mind after speaking with the instructional team. Their faith in my ability to carry out this project gave me hope and I spent the first day pseudocoding the main parts of the game. Collision detection and grid boundaries were two important factors to this game so I dedicated a fair amount of time to those, as well as auto-generating the obstacles. 
@@ -206,7 +206,7 @@ Collision detection happens both when bear moves into a moving obstacle and when
 As I had only been on the course for about three weeks and this was the most JavaScript I’d ever written, there were many challenges! Once I’d figured out boundaries of the grid that bear couldn’t go through, collision detection was the next tricky part - and a big part of the game at that. 
 
 
-### Wins
+### Wins 🎉
 It was noted in the brief that there would be a number of timers to manage across the whole game, which can easily get out of hand. I’m happy to say that I now feel a lot more comfortable using timers! And overall, my understanding of JS fundamentals such as DOM events and query selectors were solidified.
 
 
@@ -215,7 +215,7 @@ It was noted in the brief that there would be a number of timers to manage acros
 * Add a high score board with local storage
 
 
-## <a name="learnings"></a> Key learnings
+## <a name="learnings"></a> Key learnings ✨
 This was a great first project to put all of the learnings from the previous three weeks into practice, and, I realised I would have done things quite differently if I did it again. I now know the importance of fully pseudocoding a project of this size before starting. Another key learning point from this project is knowing when to step back and move on to another area if I was stuck on a piece of code.
 
 
